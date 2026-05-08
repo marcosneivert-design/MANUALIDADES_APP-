@@ -26,7 +26,6 @@ h1,h2,h3,h4{font-family:'Barlow Condensed',sans-serif;letter-spacing:.02em}
 .card{background:var(--s1);border:1px solid var(--bd);border-radius:var(--rl);padding:18px;margin-bottom:14px}
 .ct{font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--mu);margin-bottom:14px;font-weight:600}
 .sc{display:none}.sc.active{display:block}
-/* LOGIN */
 #sc-login{display:flex;align-items:center;justify-content:center;min-height:calc(100vh - 56px);padding:20px}
 .lc{background:var(--s1);border:1px solid var(--bd);border-radius:var(--rl);padding:36px 28px;width:100%;max-width:380px}
 .lc h2{font-size:26px;font-weight:800;margin-bottom:6px}
@@ -36,7 +35,6 @@ h1,h2,h3,h4{font-family:'Barlow Condensed',sans-serif;letter-spacing:.02em}
 .ri{font-size:26px;line-height:1}
 .rn strong{display:block;font-weight:600}
 .rn small{color:var(--mu);font-size:13px}
-/* INPUTS */
 input,select,textarea{width:100%;padding:9px 12px;background:var(--s2);border:1px solid var(--bd2);border-radius:var(--r);color:var(--tx);font-family:'Barlow',sans-serif;font-size:15px;outline:none;transition:border-color .15s}
 input:focus,select:focus,textarea:focus{border-color:var(--acc)}
 select option{background:var(--s2)}
@@ -44,7 +42,6 @@ select option{background:var(--s2)}
 .fg{margin-bottom:10px}
 .fr{display:flex;gap:10px;margin-bottom:10px;flex-wrap:wrap}
 .fr .fg{flex:1;min-width:120px}
-/* BUTTONS */
 .btn{padding:9px 18px;border-radius:var(--r);font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:.04em;cursor:pointer;border:none;transition:all .15s;white-space:nowrap}
 .btn-p{background:var(--acc);color:#000}.btn-p:hover{background:var(--acc2)}
 .btn-s{background:var(--s2);color:var(--tx);border:1px solid var(--bd2)}.btn-s:hover{border-color:var(--acc);color:var(--acc)}
@@ -53,18 +50,15 @@ select option{background:var(--s2)}
 .btn-b{background:rgba(59,130,246,.12);color:#93c5fd;border:1px solid rgba(59,130,246,.25)}.btn-b:hover{background:rgba(59,130,246,.22)}
 .btn-f{width:100%;text-align:center}
 .btn-sm{padding:6px 12px;font-size:13px}
-/* TABS */
 .tabs{display:flex;gap:4px;background:var(--s2);border-radius:var(--r);padding:3px;margin-bottom:18px}
 .tab{flex:1;padding:8px;border-radius:7px;border:none;background:transparent;color:var(--mu);font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:.04em;cursor:pointer;transition:all .15s;white-space:nowrap}
 .tab.active{background:var(--s1);color:var(--tx)}
-/* STATS */
 .sg{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-bottom:14px}
 .sc2{background:var(--s2);border-radius:var(--r);padding:12px;border:1px solid var(--bd)}
 .sl{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--mu);margin-bottom:5px;font-weight:600}
 .sv{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:700;line-height:1}
 .ss{font-size:11px;color:var(--mu);margin-top:3px}
 .cg{color:var(--grn)}.ca{color:var(--acc2)}.cr{color:var(--red)}.cb{color:var(--blu)}.co{color:var(--orn)}
-/* PROGRESS */
 .pw{margin:12px 0}
 .ph{display:flex;justify-content:space-between;margin-bottom:6px;font-size:13px}
 .pt{height:10px;background:var(--s2);border-radius:5px;overflow:hidden;border:1px solid var(--bd)}
@@ -72,7 +66,6 @@ select option{background:var(--s2)}
 .pf.done{background:var(--grn)}
 .pf.over{background:var(--blu)}
 .pf.late{background:var(--red)}
-/* OBJ LIST */
 .ol{display:flex;flex-direction:column;gap:10px}
 .oi{background:var(--s2);border:1px solid var(--bd);border-radius:var(--r);padding:14px}
 .oi.a-obj{border-color:rgba(245,158,11,.4);background:rgba(245,158,11,.04)}
@@ -85,7 +78,6 @@ select option{background:var(--s2)}
 .s-l{background:rgba(34,197,94,.15);color:var(--grn)}
 .s-o{background:rgba(59,130,246,.15);color:#93c5fd}
 .o-ac{margin-top:10px;display:flex;gap:6px;flex-wrap:wrap}
-/* HORARIO BOX */
 .hb-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
 .hb{border-radius:var(--r);padding:14px;text-align:center}
 .hb-teo{background:rgba(245,158,11,.07);border:1px solid rgba(245,158,11,.2)}
@@ -94,13 +86,11 @@ select option{background:var(--s2)}
 .hb-l{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--mu);margin-bottom:3px;font-weight:600}
 .hb-h{font-family:'Barlow Condensed',sans-serif;font-size:38px;font-weight:800;line-height:1}
 .hb-s{font-size:11px;color:var(--mu);margin-top:4px}
-/* ALERT */
 .alert{padding:10px 14px;border-radius:var(--r);margin-bottom:10px;font-size:13px;display:flex;align-items:center;gap:8px}
 .al-w{background:rgba(249,115,22,.12);border:1px solid rgba(249,115,22,.3);color:#fdba74}
 .al-ok{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25);color:#86efac}
 .al-r{background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.3);color:#fca5a5}
 .al-b{background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.25);color:#93c5fd}
-/* VIAJES LOG */
 .vl{max-height:220px;overflow-y:auto}
 .vr{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--bd);font-size:13px}
 .vr:last-child{border:none}
@@ -108,32 +98,25 @@ select option{background:var(--s2)}
 .vi{flex:1}
 .vt{color:var(--mu);font-size:11px}
 .vk{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:600;color:var(--grn);white-space:nowrap}
-/* MODAL */
 .mo{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:200;align-items:center;justify-content:center;padding:16px}
 .mo.open{display:flex}
 .md{background:var(--s1);border:1px solid var(--bd2);border-radius:var(--rl);padding:24px;width:100%;max-width:520px;max-height:90vh;overflow-y:auto}
 .md h3{font-size:22px;font-weight:700;margin-bottom:16px}
-/* KG INPUT GRANDE para operario */
 .kg-big{font-size:42px !important;font-family:'Barlow Condensed',sans-serif !important;font-weight:700 !important;text-align:center;letter-spacing:2px;padding:16px !important;color:var(--grn) !important}
 .kg-big::placeholder{color:var(--s3) !important}
-/* SEMANA HIST */
 .wk-card{background:var(--s2);border:1px solid var(--bd);border-radius:var(--r);padding:14px;margin-bottom:10px}
 .wk-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
 .wk-t{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700}
-/* LOADING */
 .loading{text-align:center;padding:40px;color:var(--mu)}
 .loading-spin{display:inline-block;width:28px;height:28px;border:2px solid var(--bd2);border-top-color:var(--acc);border-radius:50%;animation:spin .7s linear infinite;margin-bottom:12px}
 @keyframes spin{to{transform:rotate(360deg)}}
-/* EXCEL TABLE */
 .tbl-wrap{overflow-x:auto;margin-top:10px}
 table.sp{border-collapse:collapse;font-size:12px;white-space:nowrap}
 table.sp th{background:var(--s3);padding:6px 10px;border:1px solid var(--bd2);color:var(--mu);font-weight:600;font-family:'Barlow Condensed',sans-serif;font-size:13px}
 table.sp td{padding:5px 10px;border:1px solid var(--bd);text-align:right}
 table.sp td:first-child{text-align:left;color:var(--mu)}
 table.sp tr:hover td{background:rgba(255,255,255,.03)}
-/* VEL EDIT */
 .vel-input{width:60px !important;padding:4px 6px !important;font-size:12px !important;text-align:center}
-/* EMPTY */
 .empty{text-align:center;padding:40px 20px;color:var(--mu)}
 .empty h3{font-size:20px;color:var(--tx);margin-bottom:8px}
 @media(max-width:500px){.hdr h1{font-size:15px}.sv{font-size:22px}.hb-h{font-size:28px}.fr{flex-direction:column}.tab{font-size:11px;padding:6px 4px}}
@@ -157,7 +140,6 @@ table.sp tr:hover td{background:rgba(255,255,255,.03)}
   </div>
 </div>
 
-<!-- LOGIN -->
 <div id="sc-login" class="sc active">
   <div class="lc">
     <h2>Acceso</h2>
@@ -180,7 +162,6 @@ table.sp tr:hover td{background:rgba(255,255,255,.03)}
   </div>
 </div>
 
-<!-- OPERARIO -->
 <div id="sc-op" class="sc">
   <div class="main">
     <div id="op-notif-area"></div>
@@ -188,7 +169,6 @@ table.sp tr:hover td{background:rgba(255,255,255,.03)}
   </div>
 </div>
 
-<!-- SUPERVISOR -->
 <div id="sc-sv" class="sc">
   <div class="main">
     <div class="tabs">
@@ -204,9 +184,6 @@ table.sp tr:hover td{background:rgba(255,255,255,.03)}
   </div>
 </div>
 
-<!-- ===================== MODALES ===================== -->
-
-<!-- MODAL VIAJE (operario) -->
 <div class="mo" id="mo-viaje">
   <div class="md" style="max-width:380px">
     <h3 id="mo-viaje-title">Registrar viaje</h3>
@@ -227,7 +204,6 @@ table.sp tr:hover td{background:rgba(255,255,255,.03)}
   </div>
 </div>
 
-<!-- MODAL NUEVO / EDITAR OBJETIVO -->
 <div class="mo" id="mo-nuevo">
   <div class="md">
     <h3 id="mo-nuevo-title">Nuevo objetivo</h3>
@@ -272,7 +248,6 @@ table.sp tr:hover td{background:rgba(255,255,255,.03)}
   </div>
 </div>
 
-<!-- MODAL CONFIRMAR -->
 <div class="mo" id="mo-conf">
   <div class="md" style="max-width:400px">
     <h3 id="mc-t">¿Confirmar?</h3>
@@ -284,7 +259,6 @@ table.sp tr:hover td{background:rgba(255,255,255,.03)}
   </div>
 </div>
 
-<!-- MODAL EXPORTAR -->
 <div class="mo" id="mo-export">
   <div class="md">
     <h3>Exportar a Excel</h3>
@@ -297,7 +271,6 @@ table.sp tr:hover td{background:rgba(255,255,255,.03)}
   </div>
 </div>
 
-<!-- MODAL NUEVO PRODUCTO (velocidades) -->
 <div class="mo" id="mo-prod">
   <div class="md" style="max-width:440px">
     <h3>Agregar producto a la tabla</h3>
@@ -318,10 +291,6 @@ table.sp tr:hover td{background:rgba(255,255,255,.03)}
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script>
-// ==========================================================
-// TABLA DE VELOCIDADES — BASE (kg/h por persona)
-// La tabla se guarda en state para poder editarla desde la app
-// ==========================================================
 const VEL_BASE_DEFAULT = {
   "180006":{"nombre":"FILET SIN PIEL 95/120g","rendPorPersona":35},
   "180007":{"nombre":"FILET SIN PIEL 121/145g","rendPorPersona":42},
@@ -348,9 +317,6 @@ function getVelTotal(cod, nOp, velTable) {
   return p.maxKg ? Math.min(v, p.maxKg) : v;
 }
 
-// ==========================================================
-// STATE / STORAGE
-// ==========================================================
 const STORAGE_KEY = 'corte_v3';
 const PIN = '1234';
 let currentRole = null;
@@ -379,9 +345,6 @@ async function saveState() {
   try { localStorage.setItem(STORAGE_KEY, data); } catch {}
 }
 
-// ==========================================================
-// PRODUCT SELECT — se reconstruye desde velTable
-// ==========================================================
 function buildProdSelect() {
   const sel = document.getElementById('f-prod');
   const val = sel.value;
@@ -399,9 +362,6 @@ function buildProdSelect() {
   if (val) sel.value = val;
 }
 
-// ==========================================================
-// UTILS
-// ==========================================================
 const fmtT = d => new Date(d).toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit'});
 const fmtD = d => new Date(d).toLocaleDateString('es-AR',{day:'2-digit',month:'2-digit'});
 const nowISO = () => new Date().toISOString();
@@ -412,11 +372,10 @@ const semanaKey = () => {
 };
 
 function kgCortado(obj){ return (obj.viajes||[]).reduce((a,v)=>a+v.kg,0); }
-// Permite pasarse del objetivo — faltante puede ser negativo (indica excedente)
 function kgFalt(obj){ return obj.totalKg - kgCortado(obj); }
 function pct(obj){
   if(!obj.totalKg) return 0;
-  return Math.round(kgCortado(obj)/obj.totalKg*100); // puede superar 100
+  return Math.round(kgCortado(obj)/obj.totalKg*100);
 }
 
 function calcFinTeo(obj){
@@ -448,14 +407,8 @@ function minAtrasado(obj){
   return Math.round((finProy-finTeo)/60000);
 }
 
-// ==========================================================
-// RELOJ
-// ==========================================================
 setInterval(()=>{ document.getElementById('clk').textContent=new Date().toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit',second:'2-digit'}); },1000);
 
-// ==========================================================
-// LOGIN
-// ==========================================================
 function selRole(r){
   if(r==='operario') enterAs('operario');
   else { document.getElementById('pin-f').style.display='block'; document.getElementById('pin-i').focus(); }
@@ -490,9 +443,6 @@ function logout(){
   if(notifInterval){ clearInterval(notifInterval); notifInterval=null; }
 }
 
-// ==========================================================
-// NOTIFICACIONES
-// ==========================================================
 let notifInterval=null;
 function startNotifCheck(){ checkNotifs(); if(notifInterval)clearInterval(notifInterval); notifInterval=setInterval(checkNotifs,60000); }
 function checkNotifs(){
@@ -509,9 +459,6 @@ function checkNotifs(){
   }
 }
 
-// ==========================================================
-// OPERARIO VIEW
-// ==========================================================
 function renderOp(){
   const activos=state.objetivos.filter(o=>o.status==='en-curso');
   const pend=state.objetivos.filter(o=>o.status==='pendiente');
@@ -529,9 +476,8 @@ function renderObjCard(obj, isSv){
   const finTeo=calcFinTeo(obj), finProy=calcFinProy(obj);
   const vel=velReal(obj), atras=isAtrasado(obj), min=minAtrasado(obj);
   const isActive=obj.status==='en-curso', isDone=obj.status==='listo';
-  const isOver = cortado > obj.totalKg; // se pasó del objetivo
+  const isOver = cortado > obj.totalKg;
   let cardCls = isActive ? (atras ? 'l-obj' : 'a-obj') : (isDone ? (isOver?'ov-obj':'d-obj') : '');
-  // progreso — cap visual en 100% pero mostramos el excedente con color distinto
   const barPct = Math.min(p, 100);
   const barCls = isOver ? 'over' : (p===100 ? 'done' : (atras ? 'late' : ''));
 
@@ -601,9 +547,6 @@ function renderObjCard(obj, isSv){
   return html;
 }
 
-// ==========================================================
-// SUPERVISOR VIEW
-// ==========================================================
 function svTab(tab,btn){
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   btn.classList.add('active');
@@ -614,14 +557,8 @@ function svTab(tab,btn){
   if(tab==='velocidades') renderVelTable();
 }
 
-// ==========================================================
-// PROGRAMA DEL DÍA — integración Google Sheets
-// ==========================================================
-// ID del Sheet MANUALIDADES_APP (el intermedio público)
-// El supervisor puede cambiarlo desde la interfaz
 function getSheetId(){ return state.sheetId || ''; }
 
-// Productos que corresponden a Manualidades para matchear con el Sheet
 const MANUALIDADES_PRODS = [
   'filet sin piel','filet para milanesa','recortes de filet','carne de patamuslo',
   'patamuslo','mix alas','alas','muslo con piel','filet sin calibre',
@@ -634,23 +571,21 @@ function matchManualidades(nombre){
   return MANUALIDADES_PRODS.some(p => n.includes(p));
 }
 
-// Parsear "1600 + 580 + 200" → [1600, 580, 200]
 function parseKgCompuesto(str){
   if(!str) return [];
   return str.toString().split('+').map(s=>parseFloat(s.trim())).filter(n=>!isNaN(n)&&n>0);
 }
 
-// Parsear "Patamuslo + Filet sin piel + Piel" → ["Patamuslo","Filet sin piel","Piel"]
 function parseProdCompuesto(str){
   if(!str) return [];
   return str.toString().split('+').map(s=>s.trim()).filter(Boolean);
 }
 
-// Dado nombres de ingredientes y sus kg, devolver solo los que son de Manualidades
 function extraerTareasManualidades(productos, kgs, lote, fecha, notaFila){
   const tareas = [];
   const prods = parseProdCompuesto(productos);
-  const kgList = parseKgCompuesto(kgs);
+  let valorKg = kgs === "" ? "0" : kgs;
+  const kgList = parseKgCompuesto(valorKg);
   prods.forEach((prod, i) => {
     if(matchManualidades(prod)){
       tareas.push({
@@ -662,7 +597,6 @@ function extraerTareasManualidades(productos, kgs, lote, fecha, notaFila){
       });
     }
   });
-  // Si el producto es solo uno y es de Manualidades, tomarlo directo
   if(tareas.length === 0 && prods.length === 0 && matchManualidades(productos)){
     tareas.push({
       producto: productos.toUpperCase().trim(),
@@ -675,8 +609,6 @@ function extraerTareasManualidades(productos, kgs, lote, fecha, notaFila){
   return tareas;
 }
 
-// Leer el Sheet intermedio como CSV
-// La hoja API debe tener columnas: fecha, producto_mp, kg_mp, lote, notas
 async function fetchPrograma(sheetId, hoja){
   const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(hoja||'API')}`;
   const resp = await fetch(url);
@@ -710,67 +642,50 @@ function parseCSVLine(line){
   return result;
 }
 
-// Filtrar por fecha
 function isFecha(row, fechaStr){
   const f = (row.fecha||row.date||row.dia||'').trim();
   if(!f) return false;
-  // Acepta formato DD/MM/YYYY, YYYY-MM-DD, etc.
+  let partes = f.split('/');
+  if(partes.length === 3) {
+      let d = partes[0].padStart(2, '0');
+      let m = partes[1].padStart(2, '0');
+      let a = partes[2];
+      let fechaISO = `${a}-${m}-${d}`;
+      return fechaISO === fechaStr;
+  }
   const d = new Date(f.includes('/')? f.split('/').reverse().join('-') : f);
   const target = new Date(fechaStr);
   return d.toDateString() === target.toDateString();
 }
 
-let progData = []; // filas leídas del Sheet
+let progData = [];
 let progFecha = new Date().toISOString().split('T')[0];
 let progLoading = false;
 
 async function renderProg(){
   const el = document.getElementById('sv-prog');
   const sheetId = getSheetId();
-
-  // Config del Sheet si no está configurado
   if(!sheetId){
     el.innerHTML = `
       <div class="card">
         <div class="ct">Configuración del programa de producción</div>
         <p style="color:var(--mu);font-size:14px;margin-bottom:16px">
           Ingresá el ID del Sheet intermedio <strong>MANUALIDADES_APP</strong> para sincronizar el programa de producción automáticamente.
-          El Sheet debe estar publicado con acceso de lectura para cualquiera con el link.
         </p>
         <div class="fg">
-          <div class="fl">ID del Google Sheet (MANUALIDADES_APP)</div>
+          <div class="fl">ID del Google Sheet</div>
           <input type="text" id="cfg-sheet-id" placeholder="Ej: 1IeuKUmpBnVx…" style="font-family:monospace">
-          <div style="font-size:11px;color:var(--mu);margin-top:4px">Lo encontrás en la URL del Sheet: docs.google.com/spreadsheets/d/<strong>ESTE_ID</strong>/edit</div>
         </div>
         <div class="fg">
-          <div class="fl">Nombre de la hoja dentro del Sheet</div>
+          <div class="fl">Nombre de la hoja</div>
           <input type="text" id="cfg-sheet-hoja" placeholder="API" value="API">
-          <div style="font-size:11px;color:var(--mu);margin-top:4px">Nombre exacto de la pestaña que contiene los datos para la app</div>
         </div>
         <button class="btn btn-p" onclick="guardarConfigSheet()">Guardar y conectar</button>
         <div id="cfg-msg" style="margin-top:10px;font-size:13px"></div>
-      </div>
-      <div class="card" style="border-color:rgba(245,158,11,.25);background:rgba(245,158,11,.04)">
-        <div class="ct">¿Cómo preparar el Sheet MANUALIDADES_APP?</div>
-        <p style="font-size:13px;color:var(--mu);margin-bottom:10px">La hoja <strong>API</strong> dentro del Sheet debe tener estas columnas exactas en la fila 1:</p>
-        <div class="tbl-wrap"><table class="sp">
-          <thead><tr><th>Columna</th><th>Contenido</th><th>Ejemplo</th></tr></thead>
-          <tbody>
-            <tr><td style="color:var(--acc2);font-weight:700">fecha</td><td>Fecha del día</td><td>07/05/2026</td></tr>
-            <tr><td style="color:var(--acc2);font-weight:700">producto_mp</td><td>Materia prima compuesta (igual que en programa)</td><td>Patamuslo + Filet sin piel + Piel</td></tr>
-            <tr><td style="color:var(--acc2);font-weight:700">kg_mp</td><td>Kg de cada ingrediente en orden</td><td>1600 + 580 + 200</td></tr>
-            <tr><td style="color:var(--acc2);font-weight:700">lote</td><td>Número de lote</td><td>REC A</td></tr>
-            <tr><td style="color:var(--acc2);font-weight:700">notas</td><td>Observaciones del programa</td><td>Urgente para línea 3</td></tr>
-          </tbody>
-        </table></div>
-        <p style="font-size:12px;color:var(--mu);margin-top:12px">
-          En tu programa principal agregás una fórmula <code style="background:var(--s3);padding:2px 6px;border-radius:4px">IMPORTRANGE</code> en el Sheet intermedio que traiga esas columnas automáticamente. Así nunca tenés que cargar nada en la app manualmente.
-        </p>
       </div>`;
     return;
   }
 
-  // Mostrar UI de programa
   const hoy = progFecha;
   el.innerHTML = `
     <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap">
@@ -782,7 +697,7 @@ async function renderProg(){
       <button class="btn btn-s btn-sm" onclick="state.sheetId='';state.sheetHoja='';saveState();renderProg()">Cambiar Sheet</button>
     </div>
     <div id="prog-contenido">
-      <div class="loading"><div class="loading-spin"></div><div>Leyendo programa de producción…</div></div>
+      <div class="loading"><div class="loading-spin"></div><div>Leyendo programa…</div></div>
     </div>`;
 
   cargarPrograma();
@@ -802,7 +717,7 @@ async function guardarConfigSheet(){
     msg.innerHTML=`<span style="color:var(--grn)">✓ Conectado — ${rows.length} filas encontradas</span>`;
     setTimeout(()=>renderProg(), 1200);
   } catch(e) {
-    msg.innerHTML=`<span style="color:var(--red)">Error al conectar: ${e.message}. Verificá que el Sheet esté publicado como "cualquiera con el link puede ver".</span>`;
+    msg.innerHTML=`<span style="color:var(--red)">Error al conectar: ${e.message}</span>`;
   }
 }
 
@@ -812,193 +727,96 @@ async function cargarPrograma(){
   el.innerHTML = '<div class="loading"><div class="loading-spin"></div><div>Leyendo programa…</div></div>';
   try {
     const rows = await fetchPrograma(state.sheetId, state.sheetHoja||'API');
-    // Filtrar por fecha seleccionada
     const rowsFecha = rows.filter(r => isFecha(r, progFecha));
-
-    // Extraer tareas de Manualidades
     let tareas = [];
     rowsFecha.forEach(row => {
-      const prodMp = row.producto_mp || row.productos || row.materia_prima || row.mp || '';
-      const kgMp   = row.kg_mp || row.kg || row.kg_materia_prima || '';
-      const lote   = row.lote || row.n__de__lote || row.lote_numero || '';
-      const notas  = row.notas || row.observaciones || row.nota || '';
+      const prodMp = row.producto_mp || row.productos || row.materia_prima || '';
+      const kgMp   = row.kg_mp || row.kg || '';
+      const lote   = row.lote || row.n__de__lote || '';
+      const notas  = row.notas || row.observaciones || '';
       const extra  = extraerTareasManualidades(prodMp, kgMp, lote, progFecha, notas);
       tareas = tareas.concat(extra);
     });
-
     progData = tareas;
     renderProgContenido(tareas);
   } catch(e) {
-    el.innerHTML = `<div class="alert al-r">Error al leer el Sheet: ${e.message}<br><span style="font-size:12px">Verificá que el archivo esté publicado con acceso público de lectura.</span></div>`;
+    el.innerHTML = `<div class="alert al-r">Error al leer el Sheet: ${e.message}</div>`;
   }
 }
 
 function renderProgContenido(tareas){
   const el = document.getElementById('prog-contenido');
   const fechaLabel = new Date(progFecha+'T12:00:00').toLocaleDateString('es-AR',{weekday:'long',day:'2-digit',month:'long'});
-
   if(!tareas.length){
-    el.innerHTML = `<div class="empty"><h3>Sin tareas para este día</h3><p>No hay trabajos de Manualidades en el programa del ${fechaLabel}.<br>Verificá que el Sheet tenga datos para esta fecha.</p></div>`;
+    el.innerHTML = `<div class="empty"><h3>Sin tareas para este día</h3><p>No hay trabajos de Manualidades en el programa del ${fechaLabel}.</p></div>`;
     return;
   }
-
-  // Cruzar con objetivos existentes para mostrar estado
-  const hoy = progFecha;
-
-  let html = `<div style="margin-bottom:12px">
-    <div style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;text-transform:capitalize">${fechaLabel}</div>
-    <div style="font-size:13px;color:var(--mu);margin-top:2px">${tareas.length} tarea${tareas.length>1?'s':''} de Manualidades · desde el programa de producción</div>
-  </div>`;
-
-  // Resumen rápido de kg totales
   const kgTotal = tareas.reduce((a,t)=>a+t.kg, 0);
-  const kgHecho = tareas.reduce((a,t)=>{
-    const obj = findObjForTarea(t);
-    return a + (obj ? kgCortado(obj) : 0);
-  }, 0);
+  const kgHecho = tareas.reduce((a,t)=>{ const obj = findObjForTarea(t); return a + (obj ? kgCortado(obj) : 0); }, 0);
   const pctTotal = kgTotal > 0 ? Math.round(kgHecho/kgTotal*100) : 0;
 
-  html += `<div class="sg" style="margin-bottom:16px">
-    <div class="sc2"><div class="sl">Tareas del día</div><div class="sv ca">${tareas.length}</div></div>
-    <div class="sc2"><div class="sl">Kg a producir</div><div class="sv cb">${kgTotal.toLocaleString('es-AR')}</div></div>
-    <div class="sc2"><div class="sl">Kg cortados</div><div class="sv cg">${kgHecho.toLocaleString('es-AR')}</div></div>
-    <div class="sc2"><div class="sl">Avance día</div><div class="sv ${pctTotal>=100?'cg':'ca'}">${pctTotal}%</div></div>
-  </div>`;
-
-  html += `<div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap">
+  let html = `<div class="sg" style="margin-bottom:16px">
+    <div class="sc2"><div class="sl">Tareas</div><div class="sv ca">${tareas.length}</div></div>
+    <div class="sc2"><div class="sl">A producir (kg)</div><div class="sv cb">${kgTotal.toLocaleString('es-AR')}</div></div>
+    <div class="sc2"><div class="sl">Cortado (kg)</div><div class="sv cg">${kgHecho.toLocaleString('es-AR')}</div></div>
+    <div class="sc2"><div class="sl">Avance</div><div class="sv ${pctTotal>=100?'cg':'ca'}">${pctTotal}%</div></div>
+  </div>
+  <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap">
     <button class="btn btn-p" onclick="activarTodasTareas()">▶ Activar todas las tareas</button>
-    <button class="btn btn-s btn-sm" onclick="cargarPrograma()">↻ Actualizar desde Sheet</button>
-  </div>`;
-
-  html += '<div class="ol">';
+  </div>
+  <div class="ol">`;
   tareas.forEach((tarea, idx) => {
     const obj = findObjForTarea(tarea);
     const cortado = obj ? kgCortado(obj) : 0;
     const p = tarea.kg > 0 ? Math.min(Math.round(cortado/tarea.kg*100), 100) : 0;
-    const excedido = cortado > tarea.kg;
     const statusLabel = !obj ? 'Sin activar' : obj.status==='listo' ? '✓ Listo' : obj.status==='en-curso' ? 'En curso' : 'Pendiente';
-    const statusCls = !obj ? 's-p' : obj.status==='listo' ? 's-l' : obj.status==='en-curso' ? 's-e' : 's-p';
-
     html += `<div class="oi ${obj&&obj.status==='en-curso'?'a-obj':obj&&obj.status==='listo'?'d-obj':''}">
-      <div class="oh">
-        <div>
-          <div class="on">${tarea.producto}</div>
-          <div style="font-size:12px;color:var(--mu);margin-top:2px">
-            ${tarea.lote?`Lote: <strong>${tarea.lote}</strong> · `:''}
-            Objetivo: <strong>${tarea.kg.toLocaleString('es-AR')} kg</strong>
-            ${tarea.obs?' · '+tarea.obs:''}
-          </div>
-        </div>
-        <span class="os ${statusCls}">${statusLabel}</span>
-      </div>`;
-
-    if(obj){
-      html += `<div class="pw" style="margin:8px 0">
-        <div class="ph">
-          <span>${cortado.toLocaleString('es-AR')} kg cortados</span>
-          <span style="color:${excedido?'var(--blu)':p>=100?'var(--grn)':'var(--orn)'}">${excedido?'✓ Superado':p>=100?'✓ Completo':`Faltan ${(tarea.kg-cortado).toFixed(0)} kg`}</span>
-        </div>
-        <div class="pt"><div class="pf ${p>=100?'done':''}" style="width:${p}%"></div></div>
-        <div style="font-size:11px;color:var(--mu);margin-top:3px">${p}% · ${(obj.viajes||[]).length} viajes registrados${obj.operarios?` · ${obj.operarios} operarios`:''}</div>
-      </div>`;
-    } else {
-      // Barra vacía con indicador
-      html += `<div class="pw" style="margin:8px 0">
-        <div class="ph"><span style="color:var(--mu)">Sin avance registrado</span><span style="color:var(--mu)">${tarea.kg.toLocaleString('es-AR')} kg pendientes</span></div>
-        <div class="pt"><div class="pf" style="width:0%"></div></div>
-      </div>`;
-    }
-
-    html += `<div class="o-ac">`;
-    if(!obj){
-      html += `<button class="btn btn-p btn-sm" onclick="activarTarea(${idx})">▶ Activar tarea</button>`;
-    } else if(obj.status==='en-curso'){
-      html += `<button class="btn btn-g btn-sm" onclick="openViajeModal('${obj.id}')">+ Registrar viaje</button>`;
-      html += `<button class="btn btn-s btn-sm" onclick="marcarListo('${obj.id}');cargarPrograma()">✓ Marcar listo</button>`;
-    } else if(obj.status==='pendiente'){
-      html += `<button class="btn btn-p btn-sm" onclick="iniciarObj('${obj.id}')">▶ Iniciar</button>`;
-    }
+      <div style="display:flex;justify-content:space-between">
+        <div><strong>${tarea.producto}</strong><div style="font-size:12px;color:var(--mu)">Lote: ${tarea.lote} · Obj: ${tarea.kg}kg</div></div>
+        <span class="os ${!obj?'s-p':obj.status==='listo'?'s-l':'s-e'}">${statusLabel}</span>
+      </div>
+      <div class="o-ac">`;
+    if(!obj) html += `<button class="btn btn-p btn-sm" onclick="activarTarea(${idx})">▶ Activar</button>`;
+    else if(obj.status==='en-curso') html += `<button class="btn btn-g btn-sm" onclick="openViajeModal('${obj.id}')">+ Viaje</button>`;
     html += `</div></div>`;
   });
-  html += '</div>';
-  el.innerHTML = html;
+  el.innerHTML = html + '</div>';
 }
 
-// Buscar si ya existe un objetivo para esta tarea en la fecha
 function findObjForTarea(tarea){
-  return state.objetivos.find(o =>
-    o.producto.toUpperCase().includes(tarea.producto.substring(0,8).toUpperCase()) &&
-    o.creadoEn && o.creadoEn.startsWith(progFecha)
-  ) || state.objetivos.find(o =>
-    o.producto.toUpperCase().includes(tarea.producto.substring(0,8).toUpperCase()) &&
-    (o.status === 'en-curso' || o.status === 'pendiente')
-  ) || null;
+  return state.objetivos.find(o => o.producto.toUpperCase().includes(tarea.producto.substring(0,8).toUpperCase()) && (o.status === 'en-curso' || o.status === 'pendiente')) || null;
 }
 
-// Activar una tarea del programa → crear objetivo con datos del Sheet
 async function activarTarea(idx){
   const tarea = progData[idx];
   if(!tarea) return;
-  // Buscar rendimiento de la tabla
-  const entry = Object.entries(state.velTable).find(([,p])=>
-    p.nombre.toUpperCase().includes(tarea.producto.substring(0,8).toUpperCase()) ||
-    tarea.producto.toUpperCase().includes(p.nombre.toUpperCase().substring(0,8))
-  );
-  // Abrir modal de nuevo objetivo pre-llenado
+  const entry = Object.entries(state.velTable).find(([,p])=>p.nombre.toUpperCase().includes(tarea.producto.substring(0,8).toUpperCase()));
   editingObjId = null;
-  document.getElementById('mo-nuevo-title').textContent = 'Activar tarea del programa';
-  document.getElementById('f-submit-btn').textContent = 'Crear objetivo';
   limpiarForm();
   buildProdSelect();
-  // Pre-llenar con los datos del programa
   const sel = document.getElementById('f-prod');
-  // Intentar matchear con la lista de productos
-  const matchOpt = Array.from(sel.options).find(opt =>
-    opt.value.toUpperCase().includes(tarea.producto.substring(0,8).toUpperCase()) ||
-    tarea.producto.toUpperCase().includes(opt.value.toUpperCase().substring(0,8))
-  );
+  const matchOpt = Array.from(sel.options).find(opt => opt.value.toUpperCase().includes(tarea.producto.substring(0,8).toUpperCase()));
   if(matchOpt) sel.value = matchOpt.value;
   else { sel.value = 'OTRO'; document.getElementById('fg-custom').style.display='block'; document.getElementById('f-custom').value = tarea.producto; }
   document.getElementById('f-tkg').value = tarea.kg;
   document.getElementById('f-lote').value = tarea.lote;
   document.getElementById('f-obs').value = tarea.obs;
-  document.getElementById('f-hinicio').value = new Date().toTimeString().slice(0,5);
   onProdChange();
   openMo('mo-nuevo');
-  // Al cerrar el modal, refrescar la vista del programa
-  document.getElementById('f-submit-btn').onclick = async function(){
-    await submitObj();
-    setTimeout(()=>{ if(!document.getElementById('mo-nuevo').classList.contains('open')) cargarPrograma(); }, 1500);
-  };
 }
 
 async function activarTodasTareas(){
-  document.getElementById('mc-t').textContent = '¿Activar todas las tareas del día?';
-  document.getElementById('mc-m').textContent = `Se crearán ${progData.filter(t=>!findObjForTarea(t)).length} objetivos nuevos con los datos del programa. Deberás completar operarios y rendimiento en cada uno.`;
-  document.getElementById('mc-ok').onclick = async () => {
-    closeMo('mo-conf');
-    for(const tarea of progData){
-      if(findObjForTarea(tarea)) continue;
-      const entry = Object.entries(state.velTable).find(([,p])=>
-        p.nombre.toUpperCase().includes(tarea.producto.substring(0,8).toUpperCase()) ||
-        tarea.producto.toUpperCase().includes(p.nombre.toUpperCase().substring(0,8))
-      );
-      state.objetivos.push({
-        id: Date.now().toString() + Math.random().toString(36).slice(2,6),
-        producto: tarea.producto, totalKg: tarea.kg, operarios: 8,
-        horaInicio: new Date().toISOString(),
-        rendTotal: entry ? getVelTotal(entry[0], 8, state.velTable) || 200 : 200,
-        lote: tarea.lote, obs: tarea.obs, operariosNombres: [],
-        status: 'pendiente', viajes: [], creadoEn: new Date(progFecha+'T08:00:00').toISOString(),
-        fromPrograma: true
-      });
-      await new Promise(r=>setTimeout(r,10));
-    }
-    await saveState();
-    renderProg();
-    renderSvRes();
-  };
-  openMo('mo-conf');
+  for(const tarea of progData){
+    if(findObjForTarea(tarea)) continue;
+    state.objetivos.push({
+      id: Date.now().toString() + Math.random().toString(36).slice(2,6),
+      producto: tarea.producto, totalKg: tarea.kg, operarios: 8,
+      horaInicio: new Date().toISOString(),
+      rendTotal: 200, lote: tarea.lote, obs: tarea.obs, status: 'pendiente', viajes: [], creadoEn: nowISO()
+    });
+  }
+  await saveState();
+  renderProg();
 }
 
 function renderSvRes(){
@@ -1006,36 +824,19 @@ function renderSvRes(){
   const enCurso=objs.filter(o=>o.status==='en-curso');
   const listos=objs.filter(o=>o.status==='listo');
   const pend=objs.filter(o=>o.status==='pendiente');
-  const atrasados=enCurso.filter(o=>isAtrasado(o));
   const kgT=objs.reduce((a,o)=>a+o.totalKg,0);
   const kgH=objs.reduce((a,o)=>a+kgCortado(o),0);
-
   let html=`<div class="sg">
     <div class="sc2"><div class="sl">En curso</div><div class="sv ca">${enCurso.length}</div></div>
-    <div class="sc2"><div class="sl">Pendientes</div><div class="sv">${pend.length}</div></div>
     <div class="sc2"><div class="sl">Completados</div><div class="sv cg">${listos.length}</div></div>
-    <div class="sc2"><div class="sl">Atrasados</div><div class="sv ${atrasados.length?'cr':''}">${atrasados.length}</div></div>
-    <div class="sc2"><div class="sl">Kg cortados</div><div class="sv cb">${kgH.toLocaleString('es-AR')}</div><div class="ss">de ${kgT.toLocaleString('es-AR')} kg</div></div>
-    <div class="sc2"><div class="sl">Avance</div><div class="sv cg">${kgT?Math.round(kgH/kgT*100):0}%</div></div>
-  </div>`;
-
-  atrasados.forEach(o=>{ html+=`<div class="alert al-r">⚠ <strong>${o.producto}</strong> — ${velReal(o)||'?'} kg/h vs ${o.rendTotal} kg/h esperado</div>`; });
-
-  html+=`<div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap">
-    <button class="btn btn-p" onclick="abrirNuevoObj()">+ Nuevo objetivo</button>
-    <button class="btn btn-b" onclick="openExportModal()">Exportar Excel</button>
-  </div>`;
-
-  if(!objs.length) html+=`<div class="empty"><h3>Sin objetivos aún</h3><p>Creá el primer objetivo del turno</p></div>`;
+    <div class="sc2"><div class="sl">Kg cortados</div><div class="sv cb">${kgH.toLocaleString('es-AR')}</div></div>
+  </div>
+  <div style="display:flex;gap:8px;margin-bottom:16px"><button class="btn btn-p" onclick="abrirNuevoObj()">+ Nuevo objetivo</button></div>`;
+  if(!objs.length) html+=`<div class="empty"><h3>Sin objetivos</h3></div>`;
   else html+=`<div class="ol">${[...enCurso,...pend,...listos].map(o=>renderObjCard(o,true)).join('')}</div>`;
-
   document.getElementById('sv-res').innerHTML=html;
-  checkNotifs();
 }
 
-// ==========================================================
-// HISTORIAL
-// ==========================================================
 function renderHist(){
   const sk=semanaKey();
   const semanas={};
@@ -1048,136 +849,29 @@ function renderHist(){
     semanas[k].push(o);
   });
   const keys=Object.keys(semanas).sort().reverse();
-  if(!keys.length){ document.getElementById('sv-hist').innerHTML=`<div class="empty"><h3>Sin historial</h3><p>Los objetivos aparecerán aquí agrupados por semana</p></div>`; return; }
   let html='';
   keys.forEach(k=>{
     const objs=semanas[k];
-    const lunes=new Date(k);
-    const viernes=new Date(k); viernes.setDate(viernes.getDate()+4);
-    const kgT=objs.reduce((a,o)=>a+o.totalKg,0);
-    const kgH=objs.reduce((a,o)=>a+kgCortado(o),0);
-    const isCur=k===sk;
-    html+=`<div class="wk-card${isCur?' a-obj':''}">
-      <div class="wk-h">
-        <div class="wk-t">Semana ${lunes.toLocaleDateString('es-AR',{day:'2-digit',month:'2-digit'})} – ${viernes.toLocaleDateString('es-AR',{day:'2-digit',month:'2-digit',year:'2-digit'})}${isCur?' <span style="font-size:12px;color:var(--acc2)">(actual)</span>':''}</div>
-      </div>
-      <div class="sg" style="grid-template-columns:repeat(4,1fr)">
-        <div class="sc2"><div class="sl">Objetivos</div><div class="sv">${objs.length}</div></div>
-        <div class="sc2"><div class="sl">Completados</div><div class="sv cg">${objs.filter(o=>o.status==='listo').length}</div></div>
-        <div class="sc2"><div class="sl">Kg objetivo</div><div class="sv cb">${kgT.toLocaleString('es-AR')}</div></div>
-        <div class="sc2"><div class="sl">Kg cortados</div><div class="sv ca">${kgH.toLocaleString('es-AR')}</div></div>
-      </div>
-      <div style="margin-top:10px"><table class="sp" style="width:100%">
-        <thead><tr><th style="text-align:left">Producto</th><th>Lote</th><th>Oper.</th><th>Obj kg</th><th>Cortado</th><th>%</th><th>Viajes</th><th>Estado</th></tr></thead>
-        <tbody>${objs.map(o=>{
-          const cortado=kgCortado(o),p=pct(o);
-          return`<tr>
-            <td style="text-align:left;color:var(--tx)">${o.producto}</td>
-            <td>${o.lote||'-'}</td><td>${o.operarios}</td><td>${o.totalKg}</td>
-            <td style="color:${p>=100?'var(--grn)':'var(--orn)'}"><strong>${cortado}</strong></td>
-            <td style="color:${p>=100?'var(--grn)':'var(--orn)'}">${p}%</td>
-            <td>${(o.viajes||[]).length}</td>
-            <td><span class="os ${p>100?'s-o':o.status==='listo'?'s-l':o.status==='en-curso'?'s-e':'s-p'}" style="font-size:10px">${p>100?'✓ Superado':o.status==='listo'?'✓ Listo':o.status==='en-curso'?'En curso':'Pendiente'}</span></td>
-          </tr>`;
-        }).join('')}</tbody>
-      </table></div>
-      <div style="margin-top:10px"><button class="btn btn-b btn-sm" onclick="exportSemana('${k}')">Exportar semana</button></div>
-    </div>`;
+    html+=`<div class="wk-card"><div class="wk-t">Semana ${k}</div><div class="ol">${objs.map(o=>`<div style="font-size:13px">${o.producto} - ${kgCortado(o)}kg</div>`).join('')}</div></div>`;
   });
-  document.getElementById('sv-hist').innerHTML=html;
+  document.getElementById('sv-hist').innerHTML=html||'<div class="empty"><h3>Sin historial</h3></div>';
 }
 
-// ==========================================================
-// TABLA DE VELOCIDADES — EDITABLE
-// ==========================================================
 function renderVelTable(){
-  const cols=[1,2,3,4,5,6,7,8,9,10,12,14,16,18,20,22,24,26,28,30,32,35];
   const vt=state.velTable;
-  let html=`<div style="display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap">
-    <button class="btn btn-p btn-sm" onclick="openMo('mo-prod')">+ Agregar producto</button>
-    <button class="btn btn-s btn-sm" onclick="resetVelTable()">Restaurar valores originales</button>
-  </div>
-  <div class="card">
-    <div class="ct">Rendimientos teóricos por N° de personas — kg/hora total equipo <span style="font-weight:400;text-transform:none;letter-spacing:0">(editá los valores de kg/persona/h en la columna "Base")</span></div>
-    <div class="tbl-wrap"><table class="sp">
-    <thead><tr><th style="text-align:left">Producto</th><th>Cód.</th><th>Base (kg/p/h)</th>${cols.map(c=>`<th>${c}p</th>`).join('')}<th></th></tr></thead>
-    <tbody>`;
+  let html=`<div class="card"><div class="tbl-wrap"><table class="sp"><thead><tr><th>Producto</th><th>Base kg/p/h</th></tr></thead><tbody>`;
   Object.entries(vt).forEach(([cod,p])=>{
-    html+=`<tr>
-      <td style="text-align:left;color:var(--tx);min-width:160px">${p.nombre}</td>
-      <td>${cod}</td>
-      <td style="text-align:center">`;
-    if(p.tablaCustom){
-      html+=`<span style="color:var(--mu);font-size:11px">tabla manual</span>`;
-    } else {
-      html+=`<input type="number" class="vel-input" value="${p.rendPorPersona||''}" min="1" step="0.5" onchange="updateVelBase('${cod}',this.value)" ${p.maxKg?`title="máx ${p.maxKg} kg/h"`:''}>`;
-    }
-    html+=`</td>`;
-    cols.forEach(n=>{
-      const v=getVelTotal(cod,n,vt);
-      html+=`<td style="${v?'':'color:var(--mu)'}${v&&p.maxKg&&v>=p.maxKg?';color:var(--orn)':''}">${v||'—'}</td>`;
-    });
-    html+=`<td><button class="btn btn-d btn-sm" style="padding:3px 8px;font-size:11px" onclick="eliminarProd('${cod}')">×</button></td>`;
-    html+=`</tr>`;
+    html+=`<tr><td>${p.nombre}</td><td><input type="number" class="vel-input" value="${p.rendPorPersona||''}" onchange="updateVelBase('${cod}',this.value)"></td></tr>`;
   });
-  html+=`</tbody></table></div></div>`;
-  document.getElementById('sv-velocidades').innerHTML=html;
+  document.getElementById('sv-velocidades').innerHTML=html+'</tbody></table></div></div>';
 }
 
 async function updateVelBase(cod, val){
-  const v=parseFloat(val);
-  if(!v||v<=0) return;
-  state.velTable[cod].rendPorPersona=v;
+  state.velTable[cod].rendPorPersona=parseFloat(val);
   await saveState();
-  buildProdSelect();
   renderVelTable();
 }
 
-async function guardarNuevoProd(){
-  const cod=document.getElementById('np-cod').value.trim();
-  const nom=document.getElementById('np-nom').value.trim();
-  const rend=parseFloat(document.getElementById('np-rend').value);
-  const msg=document.getElementById('np-msg');
-  if(!cod||!nom||!rend){ msg.innerHTML='<span style="color:var(--red)">Completá todos los campos</span>'; return; }
-  if(state.velTable[cod]){ msg.innerHTML='<span style="color:var(--orn)">Ese código ya existe</span>'; return; }
-  state.velTable[cod]={nombre:nom,rendPorPersona:rend};
-  await saveState();
-  buildProdSelect();
-  closeMo('mo-prod');
-  ['np-cod','np-nom','np-rend'].forEach(id=>document.getElementById(id).value='');
-  msg.innerHTML='';
-  renderVelTable();
-}
-
-function eliminarProd(cod){
-  document.getElementById('mc-t').textContent='¿Eliminar producto de la tabla?';
-  document.getElementById('mc-m').textContent=`Se eliminará "${state.velTable[cod]?.nombre}" de la tabla de velocidades. Los objetivos ya creados no se ven afectados.`;
-  document.getElementById('mc-ok').onclick=async()=>{
-    delete state.velTable[cod];
-    await saveState();
-    buildProdSelect();
-    closeMo('mo-conf');
-    renderVelTable();
-  };
-  openMo('mo-conf');
-}
-
-async function resetVelTable(){
-  document.getElementById('mc-t').textContent='¿Restaurar tabla original?';
-  document.getElementById('mc-m').textContent='Se perderán todos los productos personalizados y cambios en velocidades.';
-  document.getElementById('mc-ok').onclick=async()=>{
-    state.velTable=JSON.parse(JSON.stringify(VEL_BASE_DEFAULT));
-    await saveState();
-    buildProdSelect();
-    closeMo('mo-conf');
-    renderVelTable();
-  };
-  openMo('mo-conf');
-}
-
-// ==========================================================
-// ACCIONES — OBJETIVOS
-// ==========================================================
 function onProdChange(){
   const sel=document.getElementById('f-prod');
   document.getElementById('fg-custom').style.display=sel.value==='OTRO'?'block':'none';
@@ -1186,23 +880,15 @@ function onProdChange(){
 function updateRendFromTable(){
   const prod=document.getElementById('f-prod').value;
   const nop=parseInt(document.getElementById('f-nop').value)||0;
-  const hint=document.getElementById('rend-hint');
   const ri=document.getElementById('f-rend');
   if(prod&&prod!=='OTRO'&&nop>0){
-    // Buscar el código por nombre
     const entry=Object.entries(state.velTable).find(([,p])=>p.nombre===prod);
-    if(entry){
-      const v=getVelTotal(entry[0],nop,state.velTable);
-      if(v){ ri.value=v; hint.textContent=`↑ De la tabla: ${v} kg/h para ${nop} personas`; hint.style.color='var(--grn)'; }
-      else { hint.textContent='Sin dato para esa cantidad'; hint.style.color='var(--orn)'; ri.value=''; }
-    }
-  } else hint.textContent='';
+    if(entry) ri.value=getVelTotal(entry[0],nop,state.velTable);
+  }
 }
 
 function abrirNuevoObj(){
   editingObjId=null;
-  document.getElementById('mo-nuevo-title').textContent='Nuevo objetivo';
-  document.getElementById('f-submit-btn').textContent='Crear objetivo';
   limpiarForm();
   openMo('mo-nuevo');
 }
@@ -1211,18 +897,13 @@ function editarObj(id){
   const o=state.objetivos.find(x=>x.id===id);
   if(!o) return;
   editingObjId=id;
-  document.getElementById('mo-nuevo-title').textContent='Editar objetivo';
-  document.getElementById('f-submit-btn').textContent='Guardar cambios';
   buildProdSelect();
   document.getElementById('f-prod').value=o.producto;
   onProdChange();
   document.getElementById('f-tkg').value=o.totalKg;
   document.getElementById('f-lote').value=o.lote||'';
-  document.getElementById('f-hinicio').value=new Date(o.horaInicio).toTimeString().slice(0,5);
   document.getElementById('f-nop').value=o.operarios;
   document.getElementById('f-rend').value=o.rendTotal;
-  document.getElementById('f-op-nombres').value=(o.operariosNombres||[]).join(', ');
-  document.getElementById('f-obs').value=o.obs||'';
   openMo('mo-nuevo');
 }
 
@@ -1235,56 +916,41 @@ async function submitObj(){
   const hi=document.getElementById('f-hinicio').value;
   const rend=parseFloat(document.getElementById('f-rend').value);
   const lote=document.getElementById('f-lote').value.trim();
-  const obs=document.getElementById('f-obs').value.trim();
-  const nombres=(document.getElementById('f-op-nombres').value.trim()).split(',').map(s=>s.trim()).filter(Boolean);
-  const msg=document.getElementById('f-msg');
-  if(!producto||!tkg||!nop||!hi||!rend){ msg.innerHTML='<span style="color:var(--red)">Completá los campos obligatorios</span>'; return; }
   const today=new Date().toISOString().split('T')[0];
 
   if(editingObjId){
     const o=state.objetivos.find(x=>x.id===editingObjId);
-    if(!o) return;
-    o.producto=producto; o.totalKg=tkg; o.operarios=nop;
-    o.horaInicio=new Date(`${today}T${hi}`).toISOString();
-    o.rendTotal=rend; o.lote=lote; o.obs=obs; o.operariosNombres=nombres;
-    msg.innerHTML='<span style="color:var(--grn)">✓ Guardado</span>';
+    o.producto=producto; o.totalKg=tkg; o.operarios=nop; o.rendTotal=rend; o.lote=lote;
   } else {
     state.objetivos.push({
       id:Date.now().toString(), producto, totalKg:tkg, operarios:nop,
       horaInicio:new Date(`${today}T${hi}`).toISOString(),
-      rendTotal:rend, lote, obs, operariosNombres:nombres,
-      status:'pendiente', viajes:[], creadoEn:nowISO()
+      rendTotal:rend, lote, status:'pendiente', viajes:[], creadoEn:nowISO()
     });
-    msg.innerHTML='<span style="color:var(--grn)">✓ Objetivo creado</span>';
   }
   await saveState();
   limpiarForm();
-  setTimeout(()=>{ msg.innerHTML=''; closeMo('mo-nuevo'); renderSvRes(); },1000);
+  closeMo('mo-nuevo');
+  refresh();
 }
 
 function limpiarForm(){
-  ['f-prod','f-custom','f-tkg','f-lote','f-hinicio','f-nop','f-rend','f-op-nombres','f-obs'].forEach(id=>{ const el=document.getElementById(id); if(el)el.value=''; });
-  document.getElementById('rend-hint').textContent='';
-  document.getElementById('fg-custom').style.display='none';
+  ['f-prod','f-custom','f-tkg','f-lote','f-nop','f-rend'].forEach(id=>{ const el=document.getElementById(id); if(el)el.value=''; });
   document.getElementById('f-hinicio').value=new Date().toTimeString().slice(0,5);
   editingObjId=null;
 }
 
 async function iniciarObj(id){
   const o=state.objetivos.find(x=>x.id===id);
-  if(!o) return;
   o.status='en-curso'; o.horaInicio=nowISO();
   await saveState(); refresh();
 }
 async function marcarListo(id){
   const o=state.objetivos.find(x=>x.id===id);
-  if(!o) return;
   o.status='listo';
   await saveState(); refresh();
 }
 function confirmDel(id){
-  document.getElementById('mc-t').textContent='¿Eliminar objetivo?';
-  document.getElementById('mc-m').textContent='Esta acción no se puede deshacer. Se perderán todos los viajes registrados.';
   document.getElementById('mc-ok').onclick=async()=>{
     state.objetivos=state.objetivos.filter(x=>x.id!==id);
     await saveState(); closeMo('mo-conf'); refresh();
@@ -1292,132 +958,35 @@ function confirmDel(id){
   openMo('mo-conf');
 }
 
-// ==========================================================
-// VIAJES — el operario pone los kg libremente, sin valor por defecto
-// ==========================================================
 function openViajeModal(id){
   currentViajeObj=id;
   const o=state.objetivos.find(x=>x.id===id);
-  document.getElementById('mo-viaje-title').textContent=`Viaje #${(o?.viajes||[]).length+1}`;
-  const cortado=o?kgCortado(o):0, falt=o?kgFalt(o):0;
-  document.getElementById('mo-viaje-sub').innerHTML=o?
-    `<strong>${o.producto}</strong> · Cortado: ${cortado.toFixed(1)} kg · ${falt>0?`Faltan aprox. <strong>${falt.toFixed(1)} kg</strong>`:'<span style="color:var(--grn)">Objetivo alcanzado — podés continuar si hay más</span>'}`:
-    '';
+  document.getElementById('mo-viaje-sub').innerHTML=`<strong>${o.producto}</strong>`;
   document.getElementById('v-kg').value='';
-  document.getElementById('v-nota').value='';
-  document.getElementById('v-info').textContent='';
   openMo('mo-viaje');
-  setTimeout(()=>document.getElementById('v-kg').focus(),100);
 }
-
-// Actualizar info en tiempo real mientras escribe
-document.addEventListener('DOMContentLoaded',()=>{
-  document.getElementById('v-kg').addEventListener('input',function(){
-    const kg=parseFloat(this.value)||0;
-    const o=state.objetivos.find(x=>x.id===currentViajeObj);
-    if(!o||!kg) return;
-    const nuevoCortado=kgCortado(o)+kg;
-    const nuevo=nuevoCortado-o.totalKg;
-    const inf=document.getElementById('v-info');
-    if(nuevo>0) inf.innerHTML=`<span style="color:var(--blu)">Con este viaje llegás a ${nuevoCortado.toFixed(1)} kg — supera el objetivo por <strong>${nuevo.toFixed(1)} kg</strong></span>`;
-    else if(nuevo===0) inf.innerHTML=`<span style="color:var(--grn)">Con este viaje alcanzás exactamente el objetivo 🎯</span>`;
-    else inf.innerHTML=`<span style="color:var(--mu)">Total acumulado: ${nuevoCortado.toFixed(1)} kg · Restan ${Math.abs(nuevo).toFixed(1)} kg</span>`;
-  });
-});
 
 async function confViaje(){
   const kg=parseFloat(document.getElementById('v-kg').value);
-  const nota=document.getElementById('v-nota').value.trim();
-  if(!kg||kg<=0){ document.getElementById('v-info').innerHTML='<span style="color:var(--red)">Ingresá una cantidad mayor a 0</span>'; return; }
   const o=state.objetivos.find(x=>x.id===currentViajeObj);
-  if(!o) return;
-  o.viajes.push({kg,nota,ts:nowISO()});
-  // NO marcar automáticamente como listo — el operario decide cuándo terminó
+  o.viajes.push({kg,ts:nowISO()});
   await saveState();
   closeMo('mo-viaje');
   refresh();
 }
 
-// ==========================================================
-// EXPORT EXCEL
-// ==========================================================
-function openExportModal(){
-  const objs=state.objetivos;
-  document.getElementById('exp-list').innerHTML=!objs.length?
-    '<p style="color:var(--mu)">Sin objetivos para exportar</p>':
-    objs.map(o=>`<label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:14px">
-      <input type="checkbox" data-id="${o.id}" checked style="width:auto">
-      <span>${o.producto}${o.lote?' · '+o.lote:''} — ${kgCortado(o)}/${o.totalKg} kg (${pct(o)}%)</span>
-    </label>`).join('');
-  openMo('mo-export');
-}
+function openExportModal(){ openMo('mo-export'); }
 function exportExcel(){
-  const ids=Array.from(document.querySelectorAll('#exp-list input:checked')).map(e=>e.dataset.id);
-  doExport(state.objetivos.filter(o=>ids.includes(o.id)),`Turno_${new Date().toLocaleDateString('es-AR').replace(/\//g,'-')}`);
-  closeMo('mo-export');
-}
-function exportSemana(sk){
-  const objs=state.objetivos.filter(o=>{
-    const d=new Date(o.creadoEn||Date.now());
-    const day=d.getDay(),diff=d.getDate()-day+(day===0?-6:1);
-    const l=new Date(new Date(d).setDate(diff));
-    return l.toISOString().split('T')[0]===sk;
-  });
-  doExport(objs,`Semana_${new Date(sk).toLocaleDateString('es-AR').replace(/\//g,'-')}`);
-}
-function doExport(objs,filename){
-  if(!objs.length){ alert('Sin datos para exportar'); return; }
   const wb=XLSX.utils.book_new();
-  // Hoja resumen
-  const rows=[
-    ['CONTROL DE CORTE — MANUALIDADES'],
-    [`Exportado: ${new Date().toLocaleString('es-AR')}`],[],
-    ['PRODUCTO','LOTE','OPERARIOS','OBJETIVO (kg)','CORTADO (kg)','DIFERENCIA (kg)','%','VIAJES','ESTADO','INICIO','FIN TEÓRICO','EQUIPO']
-  ];
-  objs.forEach(o=>{
-    const fin=calcFinTeo(o), cortado=kgCortado(o);
-    rows.push([o.producto,o.lote||'',o.operarios,o.totalKg,cortado,(cortado-o.totalKg).toFixed(1),`${pct(o)}%`,(o.viajes||[]).length,
-      o.status==='listo'?'Listo':o.status==='en-curso'?'En curso':'Pendiente',
-      fmtT(o.horaInicio),fin?fmtT(fin):'-',(o.operariosNombres||[]).join(', ')]);
-  });
-  const wsR=XLSX.utils.aoa_to_sheet(rows);
-  wsR['!cols']=[{wch:28},{wch:12},{wch:10},{wch:12},{wch:12},{wch:12},{wch:6},{wch:8},{wch:12},{wch:10},{wch:12},{wch:30}];
-  XLSX.utils.book_append_sheet(wb,wsR,'Resumen');
-  // Hoja por objetivo
-  objs.forEach((o,i)=>{
-    const r=[
-      [`${o.producto}${o.lote?' — '+o.lote:''}`],
-      [`Operarios: ${o.operarios} | Objetivo: ${o.totalKg} kg | Rendimiento: ${o.rendTotal} kg/h`],
-      [(o.operariosNombres||[]).length?`Equipo: ${o.operariosNombres.join(', ')}`:''],
-      [],['#','KG','HORA','NOTA','ACUMULADO','RESTANTE']
-    ];
-    let acum=0;
-    (o.viajes||[]).forEach((v,j)=>{ acum+=v.kg; r.push([j+1,v.kg,fmtT(v.ts),v.nota||'',acum.toFixed(1),Math.max(0,o.totalKg-acum).toFixed(1)]); });
-    r.push([],['TOTAL CORTADO',kgCortado(o).toFixed(1)],['OBJETIVO',o.totalKg],['DIFERENCIA',(kgCortado(o)-o.totalKg).toFixed(1)],['%',`${pct(o)}%`]);
-    const ws=XLSX.utils.aoa_to_sheet(r);
-    ws['!cols']=[{wch:5},{wch:8},{wch:10},{wch:30},{wch:12},{wch:12}];
-    XLSX.utils.book_append_sheet(wb,ws,(o.producto.substring(0,18)+`_${i+1}`).replace(/[\/\\?*\[\]]/g,''));
-  });
-  XLSX.writeFile(wb,`${filename}.xlsx`);
+  const rows=[['PRODUCTO','LOTE','KG','VIAJES']];
+  state.objetivos.forEach(o=>rows.push([o.producto,o.lote,kgCortado(o),(o.viajes||[]).length]));
+  XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(rows),'Resumen');
+  XLSX.writeFile(wb,`Reporte_${new Date().toLocaleDateString()}.xlsx`);
 }
 
-// ==========================================================
-// MODALS / REFRESH
-// ==========================================================
 function openMo(id){ document.getElementById(id).classList.add('open'); }
 function closeMo(id){ document.getElementById(id).classList.remove('open'); }
-document.addEventListener('click',e=>{ if(e.target.classList.contains('mo')) closeMo(e.target.id); });
-
-function refresh(){
-  if(currentRole==='operario') renderOp();
-  if(currentRole==='supervisor') renderSvRes();
-}
-setInterval(async()=>{
-  if(!currentRole) return;
-  await loadState();
-  refresh();
-},45000);
+function refresh(){ if(currentRole==='operario') renderOp(); else renderSvRes(); }
 </script>
 </body>
 </html>
-
