@@ -213,7 +213,6 @@ table.sp tbody tr:hover td{background:rgba(255,255,255,.03)}
 </head>
 <body>
 
-<!-- ═══ HEADER ═══ -->
 <div class="hdr">
   <div class="hdr-brand">
     <div class="logo">C</div>
@@ -230,7 +229,6 @@ table.sp tbody tr:hover td{background:rgba(255,255,255,.03)}
   </div>
 </div>
 
-<!-- ═══ LOGIN ═══ -->
 <div id="sc-login" class="sc active">
   <div class="lc">
     <div class="lc-logo">C</div>
@@ -254,7 +252,6 @@ table.sp tbody tr:hover td{background:rgba(255,255,255,.03)}
   </div>
 </div>
 
-<!-- ═══ OPERARIO ═══ -->
 <div id="sc-op" class="sc">
   <div class="main">
     <div id="op-notif"></div>
@@ -262,7 +259,6 @@ table.sp tbody tr:hover td{background:rgba(255,255,255,.03)}
   </div>
 </div>
 
-<!-- ═══ SUPERVISOR ═══ -->
 <div id="sc-sv" class="sc">
   <div class="main">
     <div class="tabs">
@@ -278,7 +274,6 @@ table.sp tbody tr:hover td{background:rgba(255,255,255,.03)}
   </div>
 </div>
 
-<!-- ═══ MODAL: VIAJE ═══ -->
 <div class="mo" id="mo-viaje">
   <div class="md" style="max-width:380px">
     <h3 id="mv-title">Registrar viaje</h3>
@@ -299,7 +294,6 @@ table.sp tbody tr:hover td{background:rgba(255,255,255,.03)}
   </div>
 </div>
 
-<!-- ═══ MODAL: NUEVO/EDITAR OBJETIVO ═══ -->
 <div class="mo" id="mo-obj">
   <div class="md">
     <h3 id="mo-obj-title">Nuevo objetivo</h3>
@@ -342,7 +336,6 @@ table.sp tbody tr:hover td{background:rgba(255,255,255,.03)}
   </div>
 </div>
 
-<!-- ═══ MODAL: CONFIRMAR ═══ -->
 <div class="mo" id="mo-conf">
   <div class="md" style="max-width:400px">
     <h3 id="mc-t">¿Confirmar?</h3>
@@ -354,7 +347,6 @@ table.sp tbody tr:hover td{background:rgba(255,255,255,.03)}
   </div>
 </div>
 
-<!-- ═══ MODAL: EXPORTAR ═══ -->
 <div class="mo" id="mo-export">
   <div class="md">
     <h3>Exportar a Excel</h3>
@@ -367,7 +359,6 @@ table.sp tbody tr:hover td{background:rgba(255,255,255,.03)}
   </div>
 </div>
 
-<!-- ═══ MODAL: NUEVO PRODUCTO ═══ -->
 <div class="mo" id="mo-prod">
   <div class="md" style="max-width:440px">
     <h3>Agregar producto</h3>
@@ -405,8 +396,6 @@ const VEL_DEFAULT = {
   "180034":{"nombre":"Pulpa de cerdo feteada","rendPorPersona":130,"maxKg":1000},
   "180029":{"nombre":"Pollo entero","rendPorPersona":null,"tablaCustom":[null,null,null,400,500,550,700,800,1000,1000,1100,1100,1100,1100,1100,1100,1100,1100,1100,1100,1100,1100,1100,1100,1100,1100,1100,1100,1100,1100,1100,1100,1100,1100,1100]}
 };
-
-const MANUALIDADES_KW = ['filet','patamuslo','carne de pata','mix ala','alas','muslo con piel','filet sin calibre','cuadrada feteada','pulpa de cerdo','pollo entero','recortes de filet','filet para milanesa','filet sin piel'];
 
 function getVelTotal(cod, n, vt) {
   const p = vt[cod]; if(!p) return null;
@@ -472,21 +461,11 @@ function velReal(o) {
 const isAtrasado = o => o.status==='en-curso' && (velReal(o)||0) > 0 && velReal(o) < o.rendTotal * 0.85;
 function minAtras(o) { const t=calcFinTeo(o),p=calcFinProy(o); return (!t||!p) ? 0 : Math.round((p-t)/60000); }
 
-// Match producto de Sheet contra palabras clave Manualidades
+// MATCH ESTRICTO: Solo lo que está en state.velTable
 function matchManu(nombre) {
   if(!nombre) return false;
-  const n = nombre.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
-  return MANUALIDADES_KW.some(k => n.includes(k.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'')));
-}
-
-// Match fuzzy para asociar tarea del programa con objetivo existente
-function matchTareaObj(tarea, obj) {
-  const tp = tarea.producto.toLowerCase().replace(/[^a-z0-9]/g,' ').trim();
-  const op = obj.producto.toLowerCase().replace(/[^a-z0-9]/g,' ').trim();
-  // Extraer palabras significativas (>3 chars)
-  const words = tp.split(/\s+/).filter(w=>w.length>3);
-  const matches = words.filter(w=>op.includes(w));
-  return matches.length >= Math.min(2, words.length);
+  const n = nombre.trim().toUpperCase();
+  return Object.values(state.velTable).some(p => p.nombre.toUpperCase() === n);
 }
 
 // ═══════════════════════════════════════════════════
@@ -740,11 +719,14 @@ function renderProgConfig() {
     <div class="ct">Columnas requeridas en la hoja API</div>
     <div class="tbl-wrap"><table class="sp"><thead><tr><th class="tal">Columna</th><th class="tal">Contenido</th><th class="tal">Ejemplo</th></tr></thead><tbody>
       <tr><td class="tal" style="color:var(--acc2);font-weight:700">fecha</td><td class="tal">Fecha del día</td><td class="tal">07/05/2026</td></tr>
-      <tr><td class="tal" style="color:var(--acc2);font-weight:700">producto_mp</td><td class="tal">Materia prima (puede ser compuesta con +)</td><td class="tal">Patamuslo + Filet + Piel</td></tr>
-      <tr><td class="tal" style="color:var(--acc2);font-weight:700">kg_mp</td><td class="tal">Kg en mismo orden</td><td class="tal">1600 + 580 + 200</td></tr>
+      <tr><td class="tal" style="color:var(--acc2);font-weight:700">producto_mp</td><td class="tal">Materia prima (puede ser compuesta con +)</td><td class="tal">FILET SIN PIEL 95/120g + piel</td></tr>
+      <tr><td class="tal" style="color:var(--acc2);font-weight:700">kg_mp</td><td class="tal">Kg en mismo orden</td><td class="tal">1600 + 200</td></tr>
       <tr><td class="tal" style="color:var(--acc2);font-weight:700">lote</td><td class="tal">Número de lote</td><td class="tal">RC-01</td></tr>
       <tr><td class="tal" style="color:var(--acc2);font-weight:700">notas</td><td class="tal">Observaciones</td><td class="tal">Urgente</td></tr>
     </tbody></table></div>
+    <p style="font-size:12px;color:var(--mu);margin-top:12px">
+      Importante: El nombre en la columna "producto_mp" debe ser igual al nombre del producto en la tabla de Velocidades de la App. Todo lo que no coincida, será ignorado por la App.
+    </p>
   </div>`;
 }
 
@@ -766,7 +748,8 @@ async function guardarSheet() {
 }
 
 async function fetchSheet(id,hoja) {
-  const url=`https://docs.google.com/spreadsheets/d/${id}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(hoja||'API')}`;
+  const tcb = Math.floor(Date.now() / 10000); // Rompe caché
+  const url=`https://docs.google.com/spreadsheets/d/${id}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(hoja||'API')}&tcb=${tcb}`;
   const r=await fetch(url);
   if(!r.ok) throw new Error(`HTTP ${r.status}`);
   return parseCSV(await r.text());
@@ -787,11 +770,14 @@ function parseCSVLine(line) {
   }
   res.push(cur); return res;
 }
+
 function isFecha(row,fs) {
   const f=(row.fecha||row.date||row.dia||'').trim(); if(!f) return false;
   const p=f.split('/');
   if(p.length===3) { let [d,m,a]=p; if(a.length===2)a='20'+a; return `${a}-${m.padStart(2,'0')}-${d.padStart(2,'0')}`===fs; }
-  return false;
+  const d = new Date(f.includes('/')? f.split('/').reverse().join('-') : f);
+  const target = new Date(fs);
+  return d.toDateString() === target.toDateString();
 }
 
 async function cargarProg() {
@@ -806,13 +792,15 @@ async function cargarProg() {
       const kg=row.kg_mp||row.kg||row.kg_materia_prima||'';
       const lote=row.lote||row.n__de__lote||'';
       const notas=row.notas||row.observaciones||row.nota||'';
-      // Parsear compuesto
+      
       const prods=mp.split('+').map(s=>s.trim()).filter(Boolean);
-      const kgArr=kg.toString().split('+').map(s=>parseFloat(s.trim())).filter(n=>!isNaN(n)&&n>0);
+      let valorKg = (kg === "" || kg === undefined || kg === null) ? "0" : kg;
+      const kgArr=valorKg.toString().split('+').map(s=>parseFloat(s.trim())).filter(n=>!isNaN(n)&&n>0);
+      
       if(prods.length>1) {
         prods.forEach((p,i)=>{ if(matchManu(p)) tareas.push({producto:p.toUpperCase().trim(),kg:kgArr[i]||0,lote,obs:notas}); });
       } else if(prods.length===1&&matchManu(prods[0])) {
-        tareas.push({producto:prods[0].toUpperCase().trim(),kg:kgArr[0]||parseFloat(kg)||0,lote,obs:notas});
+        tareas.push({producto:prods[0].toUpperCase().trim(),kg:kgArr[0]||parseFloat(valorKg)||0,lote,obs:notas});
       }
     });
     progData=tareas;
@@ -835,7 +823,7 @@ function renderProgCont(tareas,rows,rowsF) {
         ${rows.length>0?`<div>📅 Primera fecha en archivo: <strong style="color:var(--tx)">"${rows[0].fecha||'no encontrada'}"</strong></div>`:''}
         <div>🔍 Fecha buscada: <strong style="color:var(--tx)">"${progFecha}"</strong></div>
         <div>✓ Filas que coinciden con la fecha: <strong style="color:var(--tx)">${rowsF.length}</strong></div>
-        ${rowsF.length>0?`<div>⚠ Los productos <strong>"${rowsF[0].producto_mp||'?'}"</strong> no coinciden con las palabras clave de Manualidades</div>`:'<div>⚠ Ninguna fila coincide con esa fecha — verificá el formato DD/MM/AAAA</div>'}
+        ${rowsF.length>0?`<div>⚠ El producto <strong>"${rowsF[0].producto_mp||'?'}"</strong> no es exactamente igual a ninguno en la tabla de Velocidades</div>`:'<div>⚠ Ninguna fila coincide con esa fecha</div>'}
       </div>
     </div>`;
     el.innerHTML=diag+`<div class="empty"><div class="empty-icon">📅</div><h3>Sin tareas para ${fechaLbl}</h3></div>`;
@@ -899,7 +887,7 @@ function renderProgCont(tareas,rows,rowsF) {
         <span style="color:${exc?'var(--blu)':p>=100?'var(--grn)':'var(--orn)'}">${exc?`✓ +${(cort-t.kg).toFixed(0)} kg`:p>=100?'✓ Completo':`Faltan ${(t.kg-cort).toFixed(0)} kg`}</span>
       </div>
       <div class="pt"><div class="pf ${obj?barC:'pf-zero'}" style="width:${p}%"></div></div>
-      ${obj?`<div style="font-size:11px;color:var(--mu);margin-top:3px">${p}% · ${(obj.viajes||[]).length} viajes · ${obj.operarios} operarios</div>`:'<div style="font-size:11px;color:var(--mu);margin-top:3px">No iniciada</div>'}
+      ${obj?`<div style="font-size:11px;color:var(--mu);margin-top:3px">${p}% · ${(obj.viajes||[]).length} viajes registrados · ${obj.operarios} operarios</div>`:'<div style="font-size:11px;color:var(--mu);margin-top:3px">No iniciada</div>'}
     </div>`;
 
     h+=`<div style="display:flex;gap:6px;flex-wrap:wrap">`;
@@ -917,48 +905,28 @@ function renderProgCont(tareas,rows,rowsF) {
   el.innerHTML=h;
 }
 
-// Matching mejorado: múltiples estrategias
 function findObj(tarea) {
-  const tp=tarea.producto.toLowerCase();
-  // 1. Match exacto en la fecha de hoy
-  let o = state.objetivos.find(o => {
-    const op=o.producto.toLowerCase();
-    return matchTareaObj(tarea,o) && o.creadoEn && o.creadoEn.startsWith(progFecha);
-  });
-  if(o) return o;
-  // 2. Match exacto en cualquier estado activo
-  o = state.objetivos.find(o => matchTareaObj(tarea,o) && (o.status==='en-curso'||o.status==='pendiente'));
-  if(o) return o;
-  // 3. Match por primeras palabras
-  const words = tp.split(/\s+/).filter(w=>w.length>3);
-  o = state.objetivos.find(o => words.some(w=>o.producto.toLowerCase().includes(w)) && o.creadoEn && o.creadoEn.startsWith(progFecha));
-  return o||null;
+  return state.objetivos.find(o => o.producto.toUpperCase() === tarea.producto.toUpperCase() && (o.status === 'en-curso' || o.status === 'pendiente')) || null;
 }
 
 async function activarTarea(idx) {
   const t=progData[idx]; if(!t) return;
-  // Buscar rendimiento en tabla
-  const entry=Object.entries(state.velTable).find(([,p])=>{
-    const pn=p.nombre.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
-    const tn=t.producto.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
-    return pn.includes(tn.substring(0,8))||tn.includes(pn.substring(0,8));
-  });
+  const entry=Object.entries(state.velTable).find(([,p])=> p.nombre.toUpperCase() === t.producto.toUpperCase() );
   const nOp=state.opsDefault;
   const rend=entry?getVelTotal(entry[0],nOp,state.velTable)||200:200;
-  // Pre-llenar y abrir modal
+  
   editId=null;
   document.getElementById('mo-obj-title').textContent='Activar tarea del programa';
   document.getElementById('f-btn').textContent='Crear objetivo';
   limpiarForm();
   buildProdSel();
+  
   const sel=document.getElementById('f-prod');
-  const opt=Array.from(sel.options).find(o=>{
-    const ov=o.value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
-    const tn=t.producto.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
-    return ov.includes(tn.substring(0,8))||tn.includes(ov.substring(0,8));
-  });
+  const opt=Array.from(sel.options).find(o=> o.value.toUpperCase() === t.producto.toUpperCase() );
+  
   if(opt) sel.value=opt.value;
   else { sel.value='OTRO'; document.getElementById('fg-custom').style.display='block'; document.getElementById('f-custom').value=t.producto; }
+  
   document.getElementById('f-tkg').value=t.kg;
   document.getElementById('f-lote').value=t.lote;
   document.getElementById('f-obs').value=t.obs;
@@ -967,6 +935,7 @@ async function activarTarea(idx) {
   document.getElementById('rend-hint').textContent=`↑ De tabla: ${rend} kg/h para ${nOp} pers.`;
   document.getElementById('rend-hint').style.color='var(--grn)';
   document.getElementById('f-hinicio').value=new Date().toTimeString().slice(0,5);
+  
   document.getElementById('f-btn').onclick=async()=>{
     await submitObj();
     setTimeout(()=>{ if(!document.getElementById('mo-obj').classList.contains('open')) cargarProg(); },1200);
@@ -982,11 +951,7 @@ async function activarTodas() {
     closeMo('mo-conf');
     for(const t of sinAct) {
       if(findObj(t)) continue;
-      const entry=Object.entries(state.velTable).find(([,p])=>{
-        const pn=p.nombre.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
-        const tn=t.producto.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
-        return pn.includes(tn.substring(0,8))||tn.includes(pn.substring(0,8));
-      });
+      const entry=Object.entries(state.velTable).find(([,p])=> p.nombre.toUpperCase() === t.producto.toUpperCase());
       const nOp=state.opsDefault;
       const rend=entry?getVelTotal(entry[0],nOp,state.velTable)||200:200;
       state.objetivos.push({
@@ -1001,8 +966,7 @@ async function activarTodas() {
       await new Promise(r=>setTimeout(r,5));
     }
     await saveState();
-    renderProgCont(progData, [], progData); // re-render sin reload
-    // Actualizar resumen en background
+    renderProgCont(progData, [], progData);
     if(role==='supervisor') setTimeout(cargarProg,100);
   };
   openMo('mo-conf');
@@ -1124,7 +1088,7 @@ function updateRend() {
   const hint=document.getElementById('rend-hint'),ri=document.getElementById('f-rend');
   if(prod&&prod!=='OTRO'&&nop>0) {
     const e=Object.entries(state.velTable).find(([,p])=>p.nombre===prod);
-    if(e) { const v=getVelTotal(e[0],nop,state.velTable); if(v){ri.value=v;hint.textContent=`↑ Tabla: ${v} kg/h para ${nop} personas`;hint.style.color='var(--grn)';}else{hint.textContent='Sin dato para esa cantidad';hint.style.color='var(--orn)';} }
+    if(e) { const v=getVelTotal(e[0],nop,state.velTable); if(v){ri.value=v;hint.textContent=`↑ Tabla: ${v} kg/h para ${nop} personas`;hint.style.color='var(--grn)';}else{hint.textContent='Sin dato para esa cantidad';hint.style.color='var(--orn)';ri.value='';} }
   } else hint.textContent='';
 }
 function abrirNuevo() { editId=null; document.getElementById('mo-obj-title').textContent='Nuevo objetivo'; document.getElementById('f-btn').textContent='Crear objetivo'; document.getElementById('f-btn').onclick=submitObj; limpiarForm(); openMo('mo-obj'); }
