@@ -363,7 +363,6 @@ function buildProdSelect() {
 }
 
 const fmtT = d => new Date(d).toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit'});
-const fmtD = d => new Date(d).toLocaleDateString('es-AR',{day:'2-digit',month:'2-digit'});
 const nowISO = () => new Date().toISOString();
 const semanaKey = () => {
   const d=new Date(),day=d.getDay(),diff=d.getDate()-day+(day===0?-6:1);
@@ -488,39 +487,28 @@ function renderObjCard(obj, isSv){
         <div style="font-size:12px;color:var(--mu);margin-top:2px">
           ${obj.lote?`Lote: <strong>${obj.lote}</strong> · `:''}${obj.operarios} pers.${obj.obs?' · '+obj.obs:''}
         </div>
-        ${(obj.operariosNombres||[]).length?`<div style="font-size:11px;color:var(--mu);margin-top:2px">👥 ${obj.operariosNombres.join(', ')}</div>`:''}
       </div>
       <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">
         <span class="os ${isOver?'s-o':obj.status==='en-curso'?'s-e':obj.status==='listo'?'s-l':'s-p'}">${isOver?'✓ Superado':obj.status==='en-curso'?'En curso':obj.status==='listo'?'✓ Listo':'Pendiente'}</span>
       </div>
     </div>`;
 
-  if(atras) html+=`<div class="alert al-r">⚠ Atrasado — vel. actual ${vel||'?'} kg/h vs ${obj.rendTotal} kg/h (atraso proyectado: +${min} min)</div>`;
-  if(isOver) html+=`<div class="alert al-b">✓ Objetivo superado por ${Math.abs(falt).toFixed(1)} kg — podés seguir registrando o marcar como listo</div>`;
+  if(atras) html+=`<div class="alert al-r">⚠ Atrasado — vel. actual ${vel||'?'} kg/h vs ${obj.rendTotal} kg/h</div>`;
 
   if(isActive||isDone){
     const hbReal = atras ? 'hb-late' : 'hb-real';
     html+=`<div class="hb-grid">
-      <div class="hb hb-teo"><div class="hb-l">Fin teórico</div><div class="hb-h ca">${finTeo?fmtT(finTeo):'--:--'}</div><div class="hb-s">Inicio ${fmtT(obj.horaInicio)} · ${obj.rendTotal} kg/h</div></div>
-      <div class="hb ${hbReal}"><div class="hb-l">Fin proyectado</div><div class="hb-h ${atras?'cr':'cg'}">${finProy&&falt>0?fmtT(finProy):(falt<=0?'✓ Listo':'--:--')}</div><div class="hb-s">${vel?`Vel. real: ${vel} kg/h`:'Esperando datos…'}</div></div>
+      <div class="hb hb-teo"><div class="hb-l">Fin teórico</div><div class="hb-h ca">${finTeo?fmtT(finTeo):'--:--'}</div></div>
+      <div class="hb ${hbReal}"><div class="hb-l">Fin proyectado</div><div class="hb-h ${atras?'cr':'cg'}">${finProy&&falt>0?fmtT(finProy):(falt<=0?'✓ Listo':'--:--')}</div></div>
     </div>`;
   }
 
   html+=`<div class="pw">
     <div class="ph">
       <span style="font-weight:600">${cortado.toFixed(1)} kg cortados</span>
-      <span style="color:${isOver?'var(--blu)':falt>0?'var(--orn)':'var(--grn)'}">
-        ${isOver?`+${Math.abs(falt).toFixed(1)} kg sobre objetivo`:falt>0?`Faltan ${falt.toFixed(1)} kg`:'✓ Objetivo alcanzado'}
-      </span>
+      <span style="color:${isOver?'var(--blu)':falt>0?'var(--orn)':'var(--grn)'}">${falt>0?`Faltan ${falt.toFixed(1)} kg`:'✓ Objetivo alcanzado'}</span>
     </div>
     <div class="pt"><div class="pf ${barCls}" style="width:${barPct}%"></div></div>
-    <div style="font-size:11px;color:var(--mu);margin-top:3px">${p}% · ${(obj.viajes||[]).length} viajes · Objetivo: ${obj.totalKg} kg</div>
-  </div>
-  <div class="sg" style="grid-template-columns:repeat(4,1fr);margin-bottom:12px">
-    <div class="sc2"><div class="sl">Viaje #</div><div class="sv ca">${(obj.viajes||[]).length+1}</div></div>
-    <div class="sc2"><div class="sl">Cortado</div><div class="sv ${isOver?'cb':''}">${cortado.toFixed(0)}</div><div class="ss">kg</div></div>
-    <div class="sc2"><div class="sl">Operarios</div><div class="sv">${obj.operarios}</div></div>
-    <div class="sc2"><div class="sl">Rend. teo.</div><div class="sv">${obj.rendTotal}</div><div class="ss">kg/h</div></div>
   </div>
   <div class="o-ac">`;
 
@@ -531,19 +519,7 @@ function renderObjCard(obj, isSv){
     html+=`<button class="btn btn-s btn-sm" onclick="editarObj('${obj.id}')">Editar</button>`;
     html+=`<button class="btn btn-d btn-sm" onclick="confirmDel('${obj.id}')">Eliminar</button>`;
   }
-  html+=`</div>`;
-
-  if((obj.viajes||[]).length>0){
-    html+=`<div style="margin-top:14px;border-top:1px solid var(--bd);padding-top:12px">
-      <div class="ct" style="margin-bottom:8px">Viajes registrados</div>
-      <div class="vl">`;
-    obj.viajes.slice().reverse().forEach((v,i)=>{
-      const n=obj.viajes.length-i;
-      html+=`<div class="vr"><div class="vn">#${n}</div><div class="vi"><div>${v.nota||'Viaje registrado'}</div><div class="vt">${fmtT(v.ts)}</div></div><div class="vk">+${v.kg} kg</div></div>`;
-    });
-    html+=`</div></div>`;
-  }
-  html+=`</div>`;
+  html+=`</div></div>`;
   return html;
 }
 
@@ -559,54 +535,20 @@ function svTab(tab,btn){
 
 function getSheetId(){ return state.sheetId || ''; }
 
-const MANUALIDADES_PRODS = [
-  'filet sin piel','filet para milanesa','recortes de filet','carne de patamuslo',
-  'patamuslo','mix alas','alas','muslo con piel','filet sin calibre',
-  'cuadrada feteada','pulpa de cerdo','pollo entero','filet'
-];
-
-function matchManualidades(nombre){
-  if(!nombre) return false;
-  const n = nombre.toLowerCase();
-  return MANUALIDADES_PRODS.some(p => n.includes(p));
-}
-
-function parseKgCompuesto(str){
-  if(!str) return [];
-  return str.toString().split('+').map(s=>parseFloat(s.trim())).filter(n=>!isNaN(n)&&n>0);
-}
-
-function parseProdCompuesto(str){
-  if(!str) return [];
-  return str.toString().split('+').map(s=>s.trim()).filter(Boolean);
-}
-
-function extraerTareasManualidades(productos, kgs, lote, fecha, notaFila){
-  const tareas = [];
-  const prods = parseProdCompuesto(productos);
-  let valorKg = kgs === "" ? "0" : kgs;
-  const kgList = parseKgCompuesto(valorKg);
-  prods.forEach((prod, i) => {
-    if(matchManualidades(prod)){
-      tareas.push({
-        producto: prod.toUpperCase().trim(),
-        kg: kgList[i] || 0,
-        lote: lote || '',
-        fecha: fecha || '',
-        obs: notaFila || ''
-      });
-    }
-  });
-  if(tareas.length === 0 && prods.length === 0 && matchManualidades(productos)){
-    tareas.push({
-      producto: productos.toUpperCase().trim(),
-      kg: parseFloat(kgs) || 0,
-      lote: lote || '',
-      fecha: fecha || '',
-      obs: notaFila || ''
-    });
+function isFecha(row, fechaStr){
+  const f = (row.fecha||row.date||row.dia||'').trim();
+  if(!f) return false;
+  
+  // Limpiamos la fecha del Sheet: convierte 4/5/2026 en 04/05/2026
+  let partesSheet = f.split('/').map(p => p.padStart(2, '0'));
+  if(partesSheet.length === 3) {
+      let fLimpia = partesSheet.join('/');
+      // Convertimos fechaStr (YYYY-MM-DD) a DD/MM/YYYY
+      const pApp = fechaStr.split('-');
+      const fApp = `${pApp[2]}/${pApp[1]}/${pApp[0]}`;
+      return fLimpia === fApp;
   }
-  return tareas;
+  return false;
 }
 
 async function fetchPrograma(sheetId, hoja){
@@ -642,348 +584,88 @@ function parseCSVLine(line){
   return result;
 }
 
-function isFecha(row, fechaStr){
-  const f = (row.fecha||row.date||row.dia||'').trim();
-  if(!f) return false;
-  let partes = f.split('/');
-  if(partes.length === 3) {
-      let d = partes[0].padStart(2, '0');
-      let m = partes[1].padStart(2, '0');
-      let a = partes[2];
-      let fechaISO = `${a}-${m}-${d}`;
-      return fechaISO === fechaStr;
-  }
-  const d = new Date(f.includes('/')? f.split('/').reverse().join('-') : f);
-  const target = new Date(fechaStr);
-  return d.toDateString() === target.toDateString();
-}
-
 let progData = [];
 let progFecha = new Date().toISOString().split('T')[0];
-let progLoading = false;
 
 async function renderProg(){
   const el = document.getElementById('sv-prog');
   const sheetId = getSheetId();
   if(!sheetId){
-    el.innerHTML = `
-      <div class="card">
-        <div class="ct">Configuración del programa de producción</div>
-        <p style="color:var(--mu);font-size:14px;margin-bottom:16px">
-          Ingresá el ID del Sheet intermedio <strong>MANUALIDADES_APP</strong> para sincronizar el programa de producción automáticamente.
-        </p>
-        <div class="fg">
-          <div class="fl">ID del Google Sheet</div>
-          <input type="text" id="cfg-sheet-id" placeholder="Ej: 1IeuKUmpBnVx…" style="font-family:monospace">
-        </div>
-        <div class="fg">
-          <div class="fl">Nombre de la hoja</div>
-          <input type="text" id="cfg-sheet-hoja" placeholder="API" value="API">
-        </div>
-        <button class="btn btn-p" onclick="guardarConfigSheet()">Guardar y conectar</button>
-        <div id="cfg-msg" style="margin-top:10px;font-size:13px"></div>
-      </div>`;
+    el.innerHTML = `<div class="card"><div class="ct">Configuración del programa</div>
+      <div class="fg"><div class="fl">ID del Google Sheet</div><input type="text" id="cfg-sheet-id" placeholder="ID largo..."></div>
+      <div class="fg"><div class="fl">Hoja (API)</div><input type="text" id="cfg-sheet-hoja" value="API"></div>
+      <button class="btn btn-p" onclick="guardarConfigSheet()">Guardar y conectar</button></div>`;
     return;
   }
-
-  const hoy = progFecha;
-  el.innerHTML = `
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap">
-      <div style="flex:1">
-        <div class="fl">Fecha del programa</div>
-        <input type="date" id="prog-fecha" value="${hoy}" onchange="progFecha=this.value;cargarPrograma()" style="max-width:180px">
-      </div>
-      <button class="btn btn-b btn-sm" onclick="cargarPrograma()">↻ Actualizar</button>
-      <button class="btn btn-s btn-sm" onclick="state.sheetId='';state.sheetHoja='';saveState();renderProg()">Cambiar Sheet</button>
-    </div>
-    <div id="prog-contenido">
-      <div class="loading"><div class="loading-spin"></div><div>Leyendo programa…</div></div>
-    </div>`;
-
+  el.innerHTML = `<div style="display:flex;gap:10px;margin-bottom:16px"><input type="date" id="prog-fecha" value="${progFecha}" onchange="progFecha=this.value;cargarPrograma()">
+    <button class="btn btn-b btn-sm" onclick="cargarPrograma()">↻ Actualizar</button>
+    <button class="btn btn-s btn-sm" onclick="state.sheetId='';saveState();renderProg()">Cambiar ID</button></div>
+    <div id="prog-contenido"><div class="loading"><div class="loading-spin"></div><div>Leyendo datos...</div></div></div>`;
   cargarPrograma();
 }
 
 async function guardarConfigSheet(){
   const id = document.getElementById('cfg-sheet-id').value.trim();
   const hoja = document.getElementById('cfg-sheet-hoja').value.trim() || 'API';
-  const msg = document.getElementById('cfg-msg');
-  if(!id){ msg.innerHTML='<span style="color:var(--red)">Ingresá el ID del Sheet</span>'; return; }
-  msg.innerHTML='<span style="color:var(--mu)">Probando conexión…</span>';
-  try {
-    const rows = await fetchPrograma(id, hoja);
-    state.sheetId = id;
-    state.sheetHoja = hoja;
-    await saveState();
-    msg.innerHTML=`<span style="color:var(--grn)">✓ Conectado — ${rows.length} filas encontradas</span>`;
-    setTimeout(()=>renderProg(), 1200);
-  } catch(e) {
-    msg.innerHTML=`<span style="color:var(--red)">Error al conectar: ${e.message}</span>`;
-  }
+  if(!id) return;
+  state.sheetId = id; state.sheetHoja = hoja;
+  await saveState(); renderProg();
 }
 
 async function cargarPrograma(){
   const el = document.getElementById('prog-contenido');
-  if(!el) return;
-  el.innerHTML = '<div class="loading"><div class="loading-spin"></div><div>Leyendo programa…</div></div>';
   try {
-    const rows = await fetchPrograma(state.sheetId, state.sheetHoja||'API');
-    const rowsFecha = rows.filter(r => isFecha(r, progFecha));
-    let tareas = [];
-    rowsFecha.forEach(row => {
-      const prodMp = row.producto_mp || row.productos || row.materia_prima || '';
-      const kgMp   = row.kg_mp || row.kg || '';
-      const lote   = row.lote || row.n__de__lote || '';
-      const notas  = row.notas || row.observaciones || '';
-      const extra  = extraerTareasManualidades(prodMp, kgMp, lote, progFecha, notas);
-      tareas = tareas.concat(extra);
+    const rows = await fetchPrograma(state.sheetId, state.sheetHoja);
+    const filtrados = rows.filter(r => isFecha(r, progFecha));
+    progData = filtrados;
+    let html = filtrados.length ? '<div class="ol">' : '<div class="empty"><h3>No hay nada para esta fecha</h3></div>';
+    filtrados.forEach((tarea, idx) => {
+      html += `<div class="oi"><div><strong>${tarea.producto_mp}</strong><br><small>Lote: ${tarea.lote} · Obj: ${tarea.kg_mp}kg</small></div>
+      <div class="o-ac"><button class="btn btn-p btn-sm" onclick="activarTarea(${idx})">▶ Activar</button></div></div>`;
     });
-    progData = tareas;
-    renderProgContenido(tareas);
-  } catch(e) {
-    el.innerHTML = `<div class="alert al-r">Error al leer el Sheet: ${e.message}</div>`;
-  }
-}
-
-function renderProgContenido(tareas){
-  const el = document.getElementById('prog-contenido');
-  const fechaLabel = new Date(progFecha+'T12:00:00').toLocaleDateString('es-AR',{weekday:'long',day:'2-digit',month:'long'});
-  if(!tareas.length){
-    el.innerHTML = `<div class="empty"><h3>Sin tareas para este día</h3><p>No hay trabajos de Manualidades en el programa del ${fechaLabel}.</p></div>`;
-    return;
-  }
-  const kgTotal = tareas.reduce((a,t)=>a+t.kg, 0);
-  const kgHecho = tareas.reduce((a,t)=>{ const obj = findObjForTarea(t); return a + (obj ? kgCortado(obj) : 0); }, 0);
-  const pctTotal = kgTotal > 0 ? Math.round(kgHecho/kgTotal*100) : 0;
-
-  let html = `<div class="sg" style="margin-bottom:16px">
-    <div class="sc2"><div class="sl">Tareas</div><div class="sv ca">${tareas.length}</div></div>
-    <div class="sc2"><div class="sl">A producir (kg)</div><div class="sv cb">${kgTotal.toLocaleString('es-AR')}</div></div>
-    <div class="sc2"><div class="sl">Cortado (kg)</div><div class="sv cg">${kgHecho.toLocaleString('es-AR')}</div></div>
-    <div class="sc2"><div class="sl">Avance</div><div class="sv ${pctTotal>=100?'cg':'ca'}">${pctTotal}%</div></div>
-  </div>
-  <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap">
-    <button class="btn btn-p" onclick="activarTodasTareas()">▶ Activar todas las tareas</button>
-  </div>
-  <div class="ol">`;
-  tareas.forEach((tarea, idx) => {
-    const obj = findObjForTarea(tarea);
-    const cortado = obj ? kgCortado(obj) : 0;
-    const p = tarea.kg > 0 ? Math.min(Math.round(cortado/tarea.kg*100), 100) : 0;
-    const statusLabel = !obj ? 'Sin activar' : obj.status==='listo' ? '✓ Listo' : obj.status==='en-curso' ? 'En curso' : 'Pendiente';
-    html += `<div class="oi ${obj&&obj.status==='en-curso'?'a-obj':obj&&obj.status==='listo'?'d-obj':''}">
-      <div style="display:flex;justify-content:space-between">
-        <div><strong>${tarea.producto}</strong><div style="font-size:12px;color:var(--mu)">Lote: ${tarea.lote} · Obj: ${tarea.kg}kg</div></div>
-        <span class="os ${!obj?'s-p':obj.status==='listo'?'s-l':'s-e'}">${statusLabel}</span>
-      </div>
-      <div class="o-ac">`;
-    if(!obj) html += `<button class="btn btn-p btn-sm" onclick="activarTarea(${idx})">▶ Activar</button>`;
-    else if(obj.status==='en-curso') html += `<button class="btn btn-g btn-sm" onclick="openViajeModal('${obj.id}')">+ Viaje</button>`;
-    html += `</div></div>`;
-  });
-  el.innerHTML = html + '</div>';
-}
-
-function findObjForTarea(tarea){
-  return state.objetivos.find(o => o.producto.toUpperCase().includes(tarea.producto.substring(0,8).toUpperCase()) && (o.status === 'en-curso' || o.status === 'pendiente')) || null;
+    el.innerHTML = html + '</div>';
+  } catch(e) { el.innerHTML = `<div class="alert al-r">Error: ${e.message}</div>`; }
 }
 
 async function activarTarea(idx){
-  const tarea = progData[idx];
-  if(!tarea) return;
-  const entry = Object.entries(state.velTable).find(([,p])=>p.nombre.toUpperCase().includes(tarea.producto.substring(0,8).toUpperCase()));
-  editingObjId = null;
-  limpiarForm();
-  buildProdSelect();
-  const sel = document.getElementById('f-prod');
-  const matchOpt = Array.from(sel.options).find(opt => opt.value.toUpperCase().includes(tarea.producto.substring(0,8).toUpperCase()));
-  if(matchOpt) sel.value = matchOpt.value;
-  else { sel.value = 'OTRO'; document.getElementById('fg-custom').style.display='block'; document.getElementById('f-custom').value = tarea.producto; }
-  document.getElementById('f-tkg').value = tarea.kg;
-  document.getElementById('f-lote').value = tarea.lote;
-  document.getElementById('f-obs').value = tarea.obs;
-  onProdChange();
-  openMo('mo-nuevo');
-}
-
-async function activarTodasTareas(){
-  for(const tarea of progData){
-    if(findObjForTarea(tarea)) continue;
-    state.objetivos.push({
-      id: Date.now().toString() + Math.random().toString(36).slice(2,6),
-      producto: tarea.producto, totalKg: tarea.kg, operarios: 8,
-      horaInicio: new Date().toISOString(),
-      rendTotal: 200, lote: tarea.lote, obs: tarea.obs, status: 'pendiente', viajes: [], creadoEn: nowISO()
-    });
-  }
-  await saveState();
-  renderProg();
+  const t = progData[idx];
+  state.objetivos.push({
+    id: Date.now().toString(), producto: t.producto_mp, totalKg: parseFloat(t.kg_mp)||0,
+    operarios: 8, rendTotal: 200, lote: t.lote, status: 'pendiente', viajes: [], creadoEn: nowISO()
+  });
+  await saveState(); renderSvRes(); svTab('res', document.querySelector('.tab'));
 }
 
 function renderSvRes(){
   const objs=state.objetivos;
   const enCurso=objs.filter(o=>o.status==='en-curso');
-  const listos=objs.filter(o=>o.status==='listo');
   const pend=objs.filter(o=>o.status==='pendiente');
-  const kgT=objs.reduce((a,o)=>a+o.totalKg,0);
-  const kgH=objs.reduce((a,o)=>a+kgCortado(o),0);
-  let html=`<div class="sg">
-    <div class="sc2"><div class="sl">En curso</div><div class="sv ca">${enCurso.length}</div></div>
-    <div class="sc2"><div class="sl">Completados</div><div class="sv cg">${listos.length}</div></div>
-    <div class="sc2"><div class="sl">Kg cortados</div><div class="sv cb">${kgH.toLocaleString('es-AR')}</div></div>
-  </div>
-  <div style="display:flex;gap:8px;margin-bottom:16px"><button class="btn btn-p" onclick="abrirNuevoObj()">+ Nuevo objetivo</button></div>`;
-  if(!objs.length) html+=`<div class="empty"><h3>Sin objetivos</h3></div>`;
-  else html+=`<div class="ol">${[...enCurso,...pend,...listos].map(o=>renderObjCard(o,true)).join('')}</div>`;
+  const listos=objs.filter(o=>o.status==='listo');
+  let html=`<div class="sg"><div class="sc2"><div class="sl">En curso</div><div class="sv ca">${enCurso.length}</div></div>
+    <div class="sc2"><div class="sl">Completados</div><div class="sv cg">${listos.length}</div></div></div>
+    <div style="margin-bottom:16px"><button class="btn btn-p" onclick="abrirNuevoObj()">+ Nuevo Manual</button></div>
+    <div class="ol">${[...enCurso,...pend,...listos].map(o=>renderObjCard(o,true)).join('')}</div>`;
   document.getElementById('sv-res').innerHTML=html;
 }
 
-function renderHist(){
-  const sk=semanaKey();
-  const semanas={};
-  state.objetivos.forEach(o=>{
-    const d=new Date(o.creadoEn||Date.now());
-    const day=d.getDay(),diff=d.getDate()-day+(day===0?-6:1);
-    const l=new Date(new Date(d).setDate(diff));
-    const k=l.toISOString().split('T')[0];
-    if(!semanas[k]) semanas[k]=[];
-    semanas[k].push(o);
-  });
-  const keys=Object.keys(semanas).sort().reverse();
-  let html='';
-  keys.forEach(k=>{
-    const objs=semanas[k];
-    html+=`<div class="wk-card"><div class="wk-t">Semana ${k}</div><div class="ol">${objs.map(o=>`<div style="font-size:13px">${o.producto} - ${kgCortado(o)}kg</div>`).join('')}</div></div>`;
-  });
-  document.getElementById('sv-hist').innerHTML=html||'<div class="empty"><h3>Sin historial</h3></div>';
-}
-
-function renderVelTable(){
-  const vt=state.velTable;
-  let html=`<div class="card"><div class="tbl-wrap"><table class="sp"><thead><tr><th>Producto</th><th>Base kg/p/h</th></tr></thead><tbody>`;
-  Object.entries(vt).forEach(([cod,p])=>{
-    html+=`<tr><td>${p.nombre}</td><td><input type="number" class="vel-input" value="${p.rendPorPersona||''}" onchange="updateVelBase('${cod}',this.value)"></td></tr>`;
-  });
-  document.getElementById('sv-velocidades').innerHTML=html+'</tbody></table></div></div>';
-}
-
-async function updateVelBase(cod, val){
-  state.velTable[cod].rendPorPersona=parseFloat(val);
-  await saveState();
-  renderVelTable();
-}
-
-function onProdChange(){
-  const sel=document.getElementById('f-prod');
-  document.getElementById('fg-custom').style.display=sel.value==='OTRO'?'block':'none';
-  updateRendFromTable();
-}
-function updateRendFromTable(){
-  const prod=document.getElementById('f-prod').value;
-  const nop=parseInt(document.getElementById('f-nop').value)||0;
-  const ri=document.getElementById('f-rend');
-  if(prod&&prod!=='OTRO'&&nop>0){
-    const entry=Object.entries(state.velTable).find(([,p])=>p.nombre===prod);
-    if(entry) ri.value=getVelTotal(entry[0],nop,state.velTable);
-  }
-}
-
-function abrirNuevoObj(){
-  editingObjId=null;
-  limpiarForm();
-  openMo('mo-nuevo');
-}
-
-function editarObj(id){
-  const o=state.objetivos.find(x=>x.id===id);
-  if(!o) return;
-  editingObjId=id;
-  buildProdSelect();
-  document.getElementById('f-prod').value=o.producto;
-  onProdChange();
-  document.getElementById('f-tkg').value=o.totalKg;
-  document.getElementById('f-lote').value=o.lote||'';
-  document.getElementById('f-nop').value=o.operarios;
-  document.getElementById('f-rend').value=o.rendTotal;
-  openMo('mo-nuevo');
-}
-
-async function submitObj(){
-  const prod=document.getElementById('f-prod').value;
-  const custom=document.getElementById('f-custom').value.trim();
-  const producto=prod==='OTRO'?custom:prod;
-  const tkg=parseFloat(document.getElementById('f-tkg').value);
-  const nop=parseInt(document.getElementById('f-nop').value);
-  const hi=document.getElementById('f-hinicio').value;
-  const rend=parseFloat(document.getElementById('f-rend').value);
-  const lote=document.getElementById('f-lote').value.trim();
-  const today=new Date().toISOString().split('T')[0];
-
-  if(editingObjId){
-    const o=state.objetivos.find(x=>x.id===editingObjId);
-    o.producto=producto; o.totalKg=tkg; o.operarios=nop; o.rendTotal=rend; o.lote=lote;
-  } else {
-    state.objetivos.push({
-      id:Date.now().toString(), producto, totalKg:tkg, operarios:nop,
-      horaInicio:new Date(`${today}T${hi}`).toISOString(),
-      rendTotal:rend, lote, status:'pendiente', viajes:[], creadoEn:nowISO()
-    });
-  }
-  await saveState();
-  limpiarForm();
-  closeMo('mo-nuevo');
-  refresh();
-}
-
-function limpiarForm(){
-  ['f-prod','f-custom','f-tkg','f-lote','f-nop','f-rend'].forEach(id=>{ const el=document.getElementById(id); if(el)el.value=''; });
-  document.getElementById('f-hinicio').value=new Date().toTimeString().slice(0,5);
-  editingObjId=null;
-}
-
 async function iniciarObj(id){
-  const o=state.objetivos.find(x=>x.id===id);
-  o.status='en-curso'; o.horaInicio=nowISO();
+  const o=state.objetivos.find(x=>x.id===id); o.status='en-curso'; o.horaInicio=nowISO();
   await saveState(); refresh();
 }
 async function marcarListo(id){
-  const o=state.objetivos.find(x=>x.id===id);
-  o.status='listo';
+  const o=state.objetivos.find(x=>x.id===id); o.status='listo';
   await saveState(); refresh();
 }
-function confirmDel(id){
-  document.getElementById('mc-ok').onclick=async()=>{
-    state.objetivos=state.objetivos.filter(x=>x.id!==id);
-    await saveState(); closeMo('mo-conf'); refresh();
-  };
-  openMo('mo-conf');
-}
-
 function openViajeModal(id){
   currentViajeObj=id;
-  const o=state.objetivos.find(x=>x.id===id);
-  document.getElementById('mo-viaje-sub').innerHTML=`<strong>${o.producto}</strong>`;
-  document.getElementById('v-kg').value='';
   openMo('mo-viaje');
 }
-
 async function confViaje(){
   const kg=parseFloat(document.getElementById('v-kg').value);
   const o=state.objetivos.find(x=>x.id===currentViajeObj);
   o.viajes.push({kg,ts:nowISO()});
-  await saveState();
-  closeMo('mo-viaje');
-  refresh();
+  await saveState(); closeMo('mo-viaje'); refresh();
 }
-
-function openExportModal(){ openMo('mo-export'); }
-function exportExcel(){
-  const wb=XLSX.utils.book_new();
-  const rows=[['PRODUCTO','LOTE','KG','VIAJES']];
-  state.objetivos.forEach(o=>rows.push([o.producto,o.lote,kgCortado(o),(o.viajes||[]).length]));
-  XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(rows),'Resumen');
-  XLSX.writeFile(wb,`Reporte_${new Date().toLocaleDateString()}.xlsx`);
-}
-
 function openMo(id){ document.getElementById(id).classList.add('open'); }
 function closeMo(id){ document.getElementById(id).classList.remove('open'); }
 function refresh(){ if(currentRole==='operario') renderOp(); else renderSvRes(); }
