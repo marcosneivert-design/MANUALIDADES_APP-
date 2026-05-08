@@ -702,22 +702,33 @@ function parseCSVLine(line){
 }
 
 // Filtrar por fecha
+// Filtrar por fecha
 function isFecha(row, fechaStr){
-  const f = (row.fecha||row.date||row.dia||'').trim();
-  if(!f) return false;
-  // Limpiamos la fecha del Sheet: convierte 4/5/2026 en 04/05/2026
-  let partesSheet = f.split('/').map(p => p.padStart(2, '0'));
-  if(partesSheet.length === 3) {
-      let fLimpia = partesSheet.join('/');
-      // Convertimos fechaStr (YYYY-MM-DD) de la App a DD/MM/YYYY
-      const pApp = fechaStr.split('-');
-      const fApp = `${pApp[2]}/${pApp[1]}/${pApp[0]}`;
-      return fLimpia === fApp;
-  }
-  // Fallback por si la fecha viene en otro formato
-  const d = new Date(f.includes('/')? f.split('/').reverse().join('-') : f);
-  const target = new Date(fechaStr);
-  return d.toDateString() === target.toDateString();
+  const f = (row.fecha||row.date||row.dia||'').trim();
+  if(!f) return false;
+  
+  // Limpiamos la fecha del Sheet y agregamos ceros
+  let partesSheet = f.split('/').map(p => p.padStart(2, '0'));
+  if(partesSheet.length === 3) {
+      
+      // LA MAGIA: Si el año tiene 2 dígitos (ej: "26"), le agregamos "20" para que sea "2026"
+      if(partesSheet[2].length === 2) {
+          partesSheet[2] = "20" + partesSheet[2];
+      }
+      
+      let fLimpia = partesSheet.join('/');
+      
+      // Convertimos fechaStr (YYYY-MM-DD) de la App a DD/MM/YYYY
+      const pApp = fechaStr.split('-');
+      const fApp = `${pApp[2]}/${pApp[1]}/${pApp[0]}`;
+      
+      return fLimpia === fApp;
+  }
+  
+  // Fallback por si la fecha viene en otro formato
+  const d = new Date(f.includes('/')? f.split('/').reverse().join('-') : f);
+  const target = new Date(fechaStr);
+  return d.toDateString() === target.toDateString();
 }
 
 let progData = []; // filas leídas del Sheet
