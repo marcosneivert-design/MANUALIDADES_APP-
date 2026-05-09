@@ -45,7 +45,7 @@ h1,h2,h3,h4{font-family:'Barlow Condensed',sans-serif;letter-spacing:.02em}
 .card-accent{border-color:rgba(245,158,11,.3);background:rgba(245,158,11,.04)}
 .ct{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--mu);margin-bottom:14px;font-weight:700}
 
-/* ── LOGIN ── */
+/* ── LOGIN ── */  
 #sc-login{display:flex;align-items:center;justify-content:center;min-height:calc(100vh - 54px);padding:20px;background:radial-gradient(ellipse at 50% 0%,rgba(245,158,11,.08) 0%,transparent 60%)}
 .lc{background:var(--s1s);border:1px solid var(--bd2);border-radius:var(--rxl);padding:40px 32px;width:100%;max-width:380px;box-shadow:var(--sh)}
 .lc-logo{width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,var(--acc),#e07b05);display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:26px;color:#000;margin:0 auto 20px;box-shadow:0 4px 16px rgba(245,158,11,.4)}
@@ -210,6 +210,7 @@ table.sp tbody tr:hover td{background:rgba(255,255,255,.03)}
 /* Evento cambio ops en log */
 .vr-ops .vn{color:var(--orn)}
 .vr-ops .vk{color:var(--orn);font-size:13px;font-weight:600}
+
 /* ── RESPONSIVE ── */
 @media(max-width:520px){
   .hdr h1{font-size:15px}
@@ -225,7 +226,6 @@ table.sp tbody tr:hover td{background:rgba(255,255,255,.03)}
 </head>
 <body>
 
-<!-- ═══ HEADER ═══ -->
 <div class="hdr">
   <div class="hdr-brand">
     <div class="logo">C</div>
@@ -242,7 +242,6 @@ table.sp tbody tr:hover td{background:rgba(255,255,255,.03)}
   </div>
 </div>
 
-<!-- ═══ LOGIN ═══ -->
 <div id="sc-login" class="sc active">
   <div class="lc">
     <div class="lc-logo">C</div>
@@ -266,7 +265,6 @@ table.sp tbody tr:hover td{background:rgba(255,255,255,.03)}
   </div>
 </div>
 
-<!-- ═══ OPERARIO ═══ -->
 <div id="sc-op" class="sc">
   <div class="main">
     <div id="op-notif"></div>
@@ -274,7 +272,6 @@ table.sp tbody tr:hover td{background:rgba(255,255,255,.03)}
   </div>
 </div>
 
-<!-- ═══ SUPERVISOR ═══ -->
 <div id="sc-sv" class="sc">
   <div class="main">
     <div class="tabs">
@@ -290,7 +287,6 @@ table.sp tbody tr:hover td{background:rgba(255,255,255,.03)}
   </div>
 </div>
 
-<!-- ═══ MODAL: VIAJE ═══ -->
 <div class="mo" id="mo-viaje">
   <div class="md" style="max-width:380px">
     <h3 id="mv-title">Registrar viaje</h3>
@@ -301,7 +297,7 @@ table.sp tbody tr:hover td{background:rgba(255,255,255,.03)}
     </div>
     <div class="fg">
       <label class="fl">Nota opcional</label>
-      <input type="text" id="v-nota" placeholder="Ej: bin incompleto, calibre diferente…">
+      <input type="text" id="v-nota" placeholder="">
     </div>
     <div id="v-info" style="min-height:20px;font-size:13px;margin-bottom:8px"></div>
     <div style="display:flex;gap:8px">
@@ -311,7 +307,6 @@ table.sp tbody tr:hover td{background:rgba(255,255,255,.03)}
   </div>
 </div>
 
-<!-- MODAL AJUSTE OPERARIOS -->
 <div class="mo" id="mo-ops">
   <div class="md" style="max-width:400px">
     <h3>Ajustar operarios</h3>
@@ -336,7 +331,6 @@ table.sp tbody tr:hover td{background:rgba(255,255,255,.03)}
   </div>
 </div>
 
-<!-- ═══ MODAL: NUEVO/EDITAR OBJETIVO ═══ -->
 <div class="mo" id="mo-obj">
   <div class="md">
     <h3 id="mo-obj-title">Nuevo objetivo</h3>
@@ -368,7 +362,7 @@ table.sp tbody tr:hover td{background:rgba(255,255,255,.03)}
     </div>
     <div class="fg">
       <label class="fl">Operarios (nombres, separados por coma)</label>
-      <input type="text" id="f-nombres" placeholder="Ej: Juan, María, Pedro">
+      <input type="text" id="f-nombres" placeholder="">
     </div>
     <div class="fg"><label class="fl">Observaciones</label><input type="text" id="f-obs" placeholder="Opcional"></div>
     <div style="display:flex;gap:8px;margin-top:4px">
@@ -379,7 +373,6 @@ table.sp tbody tr:hover td{background:rgba(255,255,255,.03)}
   </div>
 </div>
 
-<!-- ═══ MODAL: CONFIRMAR ═══ -->
 <div class="mo" id="mo-conf">
   <div class="md" style="max-width:400px">
     <h3 id="mc-t">¿Confirmar?</h3>
@@ -391,7 +384,6 @@ table.sp tbody tr:hover td{background:rgba(255,255,255,.03)}
   </div>
 </div>
 
-<!-- ═══ MODAL: EXPORTAR ═══ -->
 <div class="mo" id="mo-export">
   <div class="md">
     <h3>Exportar a Excel</h3>
@@ -404,12 +396,11 @@ table.sp tbody tr:hover td{background:rgba(255,255,255,.03)}
   </div>
 </div>
 
-<!-- ═══ MODAL: NUEVO PRODUCTO ═══ -->
 <div class="mo" id="mo-prod">
   <div class="md" style="max-width:440px">
     <h3>Agregar producto</h3>
-    <div class="fg"><label class="fl">Código interno</label><input type="text" id="np-cod" placeholder="Ej: 180099"></div>
-    <div class="fg"><label class="fl">Nombre del producto</label><input type="text" id="np-nom" placeholder="Ej: SUPREMA RELLENA"></div>
+    <div class="fg"><label class="fl">Código interno</label><input type="text" id="np-cod" placeholder=""></div>
+    <div class="fg"><label class="fl">Nombre del producto</label><input type="text" id="np-nom" placeholder=""></div>
     <div class="fg">
       <label class="fl">Rendimiento por persona (kg/h)</label>
       <input type="number" id="np-rend" placeholder="Ej: 45" min="1" step="0.5">
@@ -504,32 +495,45 @@ const kgCortado = o => (o.viajes||[]).reduce((a,v)=>a+(v.tipo==='ops'?0:v.kg),0)
 const kgFalt = o => o.totalKg - kgCortado(o);
 const pct = o => o.totalKg ? Math.round(kgCortado(o)/o.totalKg*100) : 0;
 
+// EL FIN TEÓRICO NO CAMBIA: Es la planificación inicial original del turno.
 function calcFinTeo(o) {
   if(!o.horaInicio||!o.rendTotal||!o.totalKg) return null;
   return new Date(new Date(o.horaInicio).getTime()+(o.totalKg/o.rendTotal)*3600000);
 }
+
+// EL FIN PROYECTADO: Usa la VELOCIDAD REAL si la hay, sino usa la Teórica Actual de la tabla.
 function calcFinProy(o) {
-  // Usa rendActual (ajustado con ops reales) si existe, sino rendTotal
-  const rend = o.rendActual || o.rendTotal;
-  if(!rend) return null;
-  const f = kgFalt(o); if(f<=0) return null;
-  return new Date(Date.now()+(f/rend)*3600000);
+  const falt = kgFalt(o);
+  if(falt<=0) return null;
+  const vReal = velReal(o);
+  // Usa la velocidad que midió la app. Si es 0 o null, usa el rendimiento teórico actual.
+  const vel = (vReal && vReal > 0) ? vReal : (o.rendActual || o.rendTotal);
+  if(!vel) return null;
+  return new Date(Date.now()+(falt/vel)*3600000);
 }
+
+// VELOCIDAD REAL: Calculada desde que inició el turno hasta el último bin. (Promedio exacto)
 function velReal(o) {
-  // Filtra solo eventos de viaje real
-  const v=(o.viajes||[]).filter(x=>x.tipo!=='ops');
-  if(v.length<2) return null;
-  const dt=(new Date(v[v.length-1].ts)-new Date(v[0].ts))/3600000;
-  if(dt<0.01) return null;
-  return Math.round(v.reduce((a,x)=>a+x.kg,0)/dt);
+  const v = (o.viajes||[]).filter(x=>x.tipo!=='ops');
+  if(!v.length || !o.horaInicio) return null;
+  const dt = (new Date(v[v.length-1].ts) - new Date(o.horaInicio)) / 3600000;
+  // Si pasó menos de 1 minuto desde que inició, no calcula para evitar velocidad infinita
+  if(dt < 0.016) return null; 
+  return Math.round(v.reduce((a,x)=>a+x.kg,0) / dt);
 }
+
 // Atrasado: compara velocidad real contra rendActual (con operarios reales del momento)
 const isAtrasado = o => {
   if(o.status!=='en-curso') return false;
   const vel=velReal(o); if(!vel||vel<=0) return false;
   return vel < (o.rendActual||o.rendTotal) * 0.85;
 };
-function minAtras(o) { const t=calcFinTeo(o),p=calcFinProy(o); return (!t||!p) ? 0 : Math.max(0,Math.round((p-t)/60000)); }
+
+// Minutos de atraso: Proyectado - Teórico
+function minAtras(o) { 
+  const t=calcFinTeo(o), p=calcFinProy(o); 
+  return (!t||!p) ? 0 : Math.max(0, Math.round((p-t)/60000)); 
+}
 
 // Match producto de Sheet contra palabras clave Manualidades
 function matchManu(nombre) {
@@ -599,7 +603,7 @@ function checkNotif() {
   if(atras.length) {
     hdr.style.display='block';
     hdr.innerHTML = `<span class="badge b-al">⚠ ${atras.length} atraso${atras.length>1?'s':''}</span>`;
-    if(area) area.innerHTML = atras.map(o=>`<div class="alert al-r">⚠ <strong>${o.producto}</strong> — ${velReal(o)} kg/h vs ${o.rendTotal} kg/h esperado · +${minAtras(o)} min de atraso proyectado</div>`).join('');
+    if(area) area.innerHTML = atras.map(o=>`<div class="alert al-r">⚠ <strong>${o.producto}</strong> — ${velReal(o)} kg/h vs ${o.rendActual||o.rendTotal} kg/h esperado · +${minAtras(o)} min de atraso proyectado</div>`).join('');
   } else {
     hdr.style.display='none';
     if(area) area.innerHTML='';
@@ -775,7 +779,9 @@ function actualizarPreviewOps(o) {
   const nuevoRend = rendParaN(o.producto, opsModalN, state.velTable)
     || Math.round(rendActual / o.operarios * opsModalN);
   const falt = kgFalt(o);
-  const finProy = falt>0 ? new Date(Date.now()+(falt/nuevoRend)*3600000) : null;
+  const vReal = velReal(o);
+  const vel = (vReal && vReal > 0) ? vReal : nuevoRend; // Para la preview, si hay vel real la muestra igual
+  const finProy = falt>0 ? new Date(Date.now()+(falt/vel)*3600000) : null;
   const finTeo = calcFinTeo(o);
   let html = `<div>Nuevo rendimiento: <strong style="color:var(--acc2)">${nuevoRend} kg/h</strong>`;
   if(nuevoRend!==rendActual) html+=` <span style="color:${nuevoRend>rendActual?'var(--grn)':'var(--red)'}">(${nuevoRend>rendActual?'+':''}${nuevoRend-rendActual} vs ahora)</span>`;
@@ -834,7 +840,7 @@ function renderRes() {
     <div class="sc2"><div class="sl">Kg cortados</div><div class="sv2 cb">${kgH.toLocaleString('es-AR')}</div><div class="ss">de ${kgT.toLocaleString('es-AR')}</div></div>
     <div class="sc2"><div class="sl">Avance</div><div class="sv2 cg">${kgT?Math.round(kgH/kgT*100):0}%</div></div>
   </div>`;
-  atrs.forEach(o=>{ h+=`<div class="alert al-r">⚠ <strong>${o.producto}</strong> — ${velReal(o)||'?'} kg/h vs ${o.rendTotal} kg/h esperado</div>`; });
+  atrs.forEach(o=>{ h+=`<div class="alert al-r">⚠ <strong>${o.producto}</strong> — ${velReal(o)||'?'} kg/h vs ${o.rendActual||o.rendTotal} kg/h esperado</div>`; });
   h+=`<div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap">
     <button class="btn btn-p" onclick="abrirNuevo()">+ Nuevo objetivo</button>
     <button class="btn btn-b" onclick="openExport()">⬇ Exportar Excel</button>
@@ -1062,7 +1068,7 @@ function renderProgCont(tareas,rows,rowsF) {
         <span style="color:${exc?'var(--blu)':p>=100?'var(--grn)':'var(--orn)'}">${exc?`✓ +${(cort-t.kg).toFixed(0)} kg`:p>=100?'✓ Completo':`Faltan ${(t.kg-cort).toFixed(0)} kg`}</span>
       </div>
       <div class="pt"><div class="pf ${obj?barC:'pf-zero'}" style="width:${p}%"></div></div>
-      ${obj?`<div style="font-size:11px;color:var(--mu);margin-top:3px">${p}% · ${(obj.viajes||[]).length} viajes · ${obj.operarios} operarios</div>`:'<div style="font-size:11px;color:var(--mu);margin-top:3px">No iniciada</div>'}
+      ${obj?`<div style="font-size:11px;color:var(--mu);margin-top:3px">${p}% · ${(obj.viajes||[]).length} viajes registrados · ${obj.operarios} operarios</div>`:'<div style="font-size:11px;color:var(--mu);margin-top:3px">No iniciada</div>'}
     </div>`;
 
     h+=`<div style="display:flex;gap:6px;flex-wrap:wrap">`;
@@ -1287,7 +1293,7 @@ function updateRend() {
   const hint=document.getElementById('rend-hint'),ri=document.getElementById('f-rend');
   if(prod&&prod!=='OTRO'&&nop>0) {
     const e=Object.entries(state.velTable).find(([,p])=>p.nombre===prod);
-    if(e) { const v=getVelTotal(e[0],nop,state.velTable); if(v){ri.value=v;hint.textContent=`↑ Tabla: ${v} kg/h para ${nop} personas`;hint.style.color='var(--grn)';}else{hint.textContent='Sin dato para esa cantidad';hint.style.color='var(--orn)';} }
+    if(e) { const v=getVelTotal(e[0],nop,state.velTable); if(v){ri.value=v;hint.textContent=`↑ Tabla: ${v} kg/h para ${nop} personas`;hint.style.color='var(--grn)';}else{hint.textContent='Sin dato para esa cantidad';hint.style.color='var(--orn)';ri.value='';} }
   } else hint.textContent='';
 }
 function abrirNuevo() { editId=null; document.getElementById('mo-obj-title').textContent='Nuevo objetivo'; document.getElementById('f-btn').textContent='Crear objetivo'; document.getElementById('f-btn').onclick=submitObj; limpiarForm(); openMo('mo-obj'); }
