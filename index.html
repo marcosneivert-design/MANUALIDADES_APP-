@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Control de Corte — Manualidades</title>
+<title>Manualidades App</title>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -26,7 +26,7 @@ h1,h2,h3,h4{font-family:'Barlow Condensed',sans-serif;letter-spacing:.02em}
 .hdr{background:rgba(20,23,34,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--bd);padding:0 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;height:54px}
 .hdr-brand{display:flex;align-items:center;gap:10px}
 .logo{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,var(--acc),#e07b05);display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:17px;color:#000;box-shadow:0 2px 8px rgba(245,158,11,0.4)}
-.hdr h1{font-size:17px;font-weight:700;color:var(--tx)}
+.hdr h1{font-size:19px;font-weight:700;color:var(--tx)}
 .hdr-sub{font-size:11px;color:var(--mu);margin-top:1px}
 .hdr-r{display:flex;align-items:center;gap:8px}
 .badge{padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em}
@@ -228,10 +228,9 @@ table.sp tbody tr:hover td{background:rgba(255,255,255,.03)}
 
 <div class="hdr">
   <div class="hdr-brand">
-    <div class="logo">C</div>
+    <div class="logo">🔪</div>
     <div>
-      <h1>Control de Corte</h1>
-      <div class="hdr-sub">Manualidades · Sector Pollo</div>
+      <h1>Manualidades App</h1>
     </div>
   </div>
   <div class="hdr-r">
@@ -244,12 +243,12 @@ table.sp tbody tr:hover td{background:rgba(255,255,255,.03)}
 
 <div id="sc-login" class="sc active">
   <div class="lc">
-    <div class="lc-logo">C</div>
-    <h2>Control de Corte</h2>
+    <div class="lc-logo">🔪</div>
+    <h2>Manualidades App</h2>
     <p>Seleccioná tu perfil para ingresar</p>
     <button class="rb" onclick="selRole('operario')">
       <div class="ri">👷</div>
-      <div class="rn"><strong>Operario / Encargado</strong><small>Registrar viajes y avances del turno</small></div>
+      <div class="rn"><strong>Encargado</strong><small>Registrar viajes y avances del turno</small></div>
     </button>
     <button class="rb" onclick="selRole('supervisor')">
       <div class="ri">📊</div>
@@ -434,8 +433,6 @@ const VEL_DEFAULT = {
   "180029":{"nombre":"Pollo entero","rendPorPersona":null,"tablaCustom":[null,null,null,400,500,550,700,800,1000,1000,1100,1100,1100,1100,1100,1100,1100,1100,1100,1100,1100,1100,1100,1100,1100,1100,1100,1100,1100,1100,1100,1100,1100,1100,1100]}
 };
 
-const MANUALIDADES_KW = ['filet','patamuslo','carne de pata','mix ala','alas','muslo con piel','filet sin calibre','cuadrada feteada','pulpa de cerdo','pollo entero','recortes de filet','filet para milanesa','filet sin piel'];
-
 function getVelTotal(cod, n, vt) {
   const p = vt[cod]; if(!p) return null;
   const i = Math.min(n-1, 34); if(i<0) return null;
@@ -535,20 +532,11 @@ function minAtras(o) {
   return (!t||!p) ? 0 : Math.max(0, Math.round((p-t)/60000)); 
 }
 
-// Match producto de Sheet contra palabras clave Manualidades
+// MATCH ESTRICTO: Solo lo que está en state.velTable
 function matchManu(nombre) {
   if(!nombre) return false;
-  const n = nombre.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
-  return MANUALIDADES_KW.some(k => n.includes(k.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'')));
-}
-
-// Match fuzzy para asociar tarea del programa con objetivo existente
-function matchTareaObj(tarea, obj) {
-  const tp = tarea.producto.toLowerCase().replace(/[^a-z0-9]/g,' ').trim();
-  const op = obj.producto.toLowerCase().replace(/[^a-z0-9]/g,' ').trim();
-  const words = tp.split(/\s+/).filter(w=>w.length>3);
-  const matches = words.filter(w=>op.includes(w));
-  return matches.length >= Math.min(2, words.length);
+  const n = nombre.trim().toUpperCase();
+  return Object.values(state.velTable).some(p => p.nombre.toUpperCase() === n);
 }
 
 // ═══════════════════════════════════════════════════
@@ -575,7 +563,7 @@ async function enterAs(r) {
   document.getElementById('sc-login').classList.remove('active');
   document.getElementById('btn-out').style.display='block';
   const b = document.getElementById('rbadge'); b.style.display='block';
-  b.innerHTML = `<span class="badge ${r==='supervisor'?'b-sv':'b-op'}">${r==='supervisor'?'Supervisor':'Operario'}</span>`;
+  b.innerHTML = `<span class="badge ${r==='supervisor'?'b-sv':'b-op'}">${r==='supervisor'?'Supervisor':'Encargado'}</span>`;
   if(r==='supervisor') { document.getElementById('sc-sv').classList.add('active'); renderRes(); }
   else { document.getElementById('sc-op').classList.add('active'); renderOp(); }
   startNotif();
@@ -909,11 +897,14 @@ function renderProgConfig() {
     <div class="ct">Columnas requeridas en la hoja API</div>
     <div class="tbl-wrap"><table class="sp"><thead><tr><th class="tal">Columna</th><th class="tal">Contenido</th><th class="tal">Ejemplo</th></tr></thead><tbody>
       <tr><td class="tal" style="color:var(--acc2);font-weight:700">fecha</td><td class="tal">Fecha del día</td><td class="tal">07/05/2026</td></tr>
-      <tr><td class="tal" style="color:var(--acc2);font-weight:700">producto_mp</td><td class="tal">Materia prima (puede ser compuesta con +)</td><td class="tal">Patamuslo + Filet + Piel</td></tr>
-      <tr><td class="tal" style="color:var(--acc2);font-weight:700">kg_mp</td><td class="tal">Kg en mismo orden</td><td class="tal">1600 + 580 + 200</td></tr>
+      <tr><td class="tal" style="color:var(--acc2);font-weight:700">producto_mp</td><td class="tal">Materia prima (puede ser compuesta con +)</td><td class="tal">FILET SIN PIEL 95/120g + piel</td></tr>
+      <tr><td class="tal" style="color:var(--acc2);font-weight:700">kg_mp</td><td class="tal">Kg en mismo orden</td><td class="tal">1600 + 200</td></tr>
       <tr><td class="tal" style="color:var(--acc2);font-weight:700">lote</td><td class="tal">Número de lote</td><td class="tal">RC-01</td></tr>
       <tr><td class="tal" style="color:var(--acc2);font-weight:700">notas</td><td class="tal">Observaciones</td><td class="tal">Urgente</td></tr>
     </tbody></table></div>
+    <p style="font-size:12px;color:var(--mu);margin-top:12px">
+      Importante: El nombre en la columna "producto_mp" debe ser igual al nombre del producto en la tabla de Velocidades de la App. Todo lo que no coincida, será ignorado por la App.
+    </p>
   </div>`;
 }
 
@@ -935,7 +926,8 @@ async function guardarSheet() {
 }
 
 async function fetchSheet(id,hoja) {
-  const url=`https://docs.google.com/spreadsheets/d/${id}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(hoja||'API')}`;
+  const tcb = Math.floor(Date.now() / 10000); // Rompe caché
+  const url=`https://docs.google.com/spreadsheets/d/${id}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(hoja||'API')}&tcb=${tcb}`;
   const r=await fetch(url);
   if(!r.ok) throw new Error(`HTTP ${r.status}`);
   return parseCSV(await r.text());
@@ -956,11 +948,14 @@ function parseCSVLine(line) {
   }
   res.push(cur); return res;
 }
+
 function isFecha(row,fs) {
   const f=(row.fecha||row.date||row.dia||'').trim(); if(!f) return false;
   const p=f.split('/');
   if(p.length===3) { let [d,m,a]=p; if(a.length===2)a='20'+a; return `${a}-${m.padStart(2,'0')}-${d.padStart(2,'0')}`===fs; }
-  return false;
+  const d = new Date(f.includes('/')? f.split('/').reverse().join('-') : f);
+  const target = new Date(fs);
+  return d.toDateString() === target.toDateString();
 }
 
 async function cargarProg() {
@@ -975,13 +970,15 @@ async function cargarProg() {
       const kg=row.kg_mp||row.kg||row.kg_materia_prima||'';
       const lote=row.lote||row.n__de__lote||'';
       const notas=row.notas||row.observaciones||row.nota||'';
-      // Parsear compuesto
+      
       const prods=mp.split('+').map(s=>s.trim()).filter(Boolean);
-      const kgArr=kg.toString().split('+').map(s=>parseFloat(s.trim())).filter(n=>!isNaN(n)&&n>0);
+      let valorKg = (kg === "" || kg === undefined || kg === null) ? "0" : kg;
+      const kgArr=valorKg.toString().split('+').map(s=>parseFloat(s.trim())).filter(n=>!isNaN(n)&&n>0);
+      
       if(prods.length>1) {
         prods.forEach((p,i)=>{ if(matchManu(p)) tareas.push({producto:p.toUpperCase().trim(),kg:kgArr[i]||0,lote,obs:notas}); });
       } else if(prods.length===1&&matchManu(prods[0])) {
-        tareas.push({producto:prods[0].toUpperCase().trim(),kg:kgArr[0]||parseFloat(kg)||0,lote,obs:notas});
+        tareas.push({producto:prods[0].toUpperCase().trim(),kg:kgArr[0]||parseFloat(valorKg)||0,lote,obs:notas});
       }
     });
     progData=tareas;
@@ -1004,7 +1001,7 @@ function renderProgCont(tareas,rows,rowsF) {
         ${rows.length>0?`<div>📅 Primera fecha en archivo: <strong style="color:var(--tx)">"${rows[0].fecha||'no encontrada'}"</strong></div>`:''}
         <div>🔍 Fecha buscada: <strong style="color:var(--tx)">"${progFecha}"</strong></div>
         <div>✓ Filas que coinciden con la fecha: <strong style="color:var(--tx)">${rowsF.length}</strong></div>
-        ${rowsF.length>0?`<div>⚠ Los productos <strong>"${rowsF[0].producto_mp||'?'}"</strong> no coinciden con las palabras clave de Manualidades</div>`:'<div>⚠ Ninguna fila coincide con esa fecha — verificá el formato DD/MM/AAAA</div>'}
+        ${rowsF.length>0?`<div>⚠ El producto <strong>"${rowsF[0].producto_mp||'?'}"</strong> no es exactamente igual a ninguno en la tabla de Velocidades</div>`:'<div>⚠ Ninguna fila coincide con esa fecha</div>'}
       </div>
     </div>`;
     el.innerHTML=diag+`<div class="empty"><div class="empty-icon">📅</div><h3>Sin tareas para ${fechaLbl}</h3></div>`;
@@ -1086,48 +1083,28 @@ function renderProgCont(tareas,rows,rowsF) {
   el.innerHTML=h;
 }
 
-// Matching mejorado: múltiples estrategias
 function findObj(tarea) {
-  const tp=tarea.producto.toLowerCase();
-  // 1. Match exacto en la fecha de hoy
-  let o = state.objetivos.find(o => {
-    const op=o.producto.toLowerCase();
-    return matchTareaObj(tarea,o) && o.creadoEn && o.creadoEn.startsWith(progFecha);
-  });
-  if(o) return o;
-  // 2. Match exacto en cualquier estado activo
-  o = state.objetivos.find(o => matchTareaObj(tarea,o) && (o.status==='en-curso'||o.status==='pendiente'));
-  if(o) return o;
-  // 3. Match por primeras palabras
-  const words = tp.split(/\s+/).filter(w=>w.length>3);
-  o = state.objetivos.find(o => words.some(w=>o.producto.toLowerCase().includes(w)) && o.creadoEn && o.creadoEn.startsWith(progFecha));
-  return o||null;
+  return state.objetivos.find(o => o.producto.toUpperCase() === tarea.producto.toUpperCase() && (o.status === 'en-curso' || o.status === 'pendiente')) || null;
 }
 
 async function activarTarea(idx) {
   const t=progData[idx]; if(!t) return;
-  // Buscar rendimiento en tabla
-  const entry=Object.entries(state.velTable).find(([,p])=>{
-    const pn=p.nombre.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
-    const tn=t.producto.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
-    return pn.includes(tn.substring(0,8))||tn.includes(pn.substring(0,8));
-  });
+  const entry=Object.entries(state.velTable).find(([,p])=> p.nombre.toUpperCase() === t.producto.toUpperCase() );
   const nOp=state.opsDefault;
   const rend=entry?getVelTotal(entry[0],nOp,state.velTable)||200:200;
-  // Pre-llenar y abrir modal
+  
   editId=null;
   document.getElementById('mo-obj-title').textContent='Activar tarea del programa';
   document.getElementById('f-btn').textContent='Crear objetivo';
   limpiarForm();
   buildProdSel();
+  
   const sel=document.getElementById('f-prod');
-  const opt=Array.from(sel.options).find(o=>{
-    const ov=o.value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
-    const tn=t.producto.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
-    return ov.includes(tn.substring(0,8))||tn.includes(ov.substring(0,8));
-  });
+  const opt=Array.from(sel.options).find(o=> o.value.toUpperCase() === t.producto.toUpperCase() );
+  
   if(opt) sel.value=opt.value;
   else { sel.value='OTRO'; document.getElementById('fg-custom').style.display='block'; document.getElementById('f-custom').value=t.producto; }
+  
   document.getElementById('f-tkg').value=t.kg;
   document.getElementById('f-lote').value=t.lote;
   document.getElementById('f-obs').value=t.obs;
@@ -1136,6 +1113,7 @@ async function activarTarea(idx) {
   document.getElementById('rend-hint').textContent=`↑ De tabla: ${rend} kg/h para ${nOp} pers.`;
   document.getElementById('rend-hint').style.color='var(--grn)';
   document.getElementById('f-hinicio').value=new Date().toTimeString().slice(0,5);
+  
   document.getElementById('f-btn').onclick=async()=>{
     await submitObj();
     setTimeout(()=>{ if(!document.getElementById('mo-obj').classList.contains('open')) cargarProg(); },1200);
@@ -1151,11 +1129,7 @@ async function activarTodas() {
     closeMo('mo-conf');
     for(const t of sinAct) {
       if(findObj(t)) continue;
-      const entry=Object.entries(state.velTable).find(([,p])=>{
-        const pn=p.nombre.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
-        const tn=t.producto.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
-        return pn.includes(tn.substring(0,8))||tn.includes(pn.substring(0,8));
-      });
+      const entry=Object.entries(state.velTable).find(([,p])=> p.nombre.toUpperCase() === t.producto.toUpperCase());
       const nOp=state.opsDefault;
       const rend=entry?getVelTotal(entry[0],nOp,state.velTable)||200:200;
       state.objetivos.push({
@@ -1170,8 +1144,7 @@ async function activarTodas() {
       await new Promise(r=>setTimeout(r,5));
     }
     await saveState();
-    renderProgCont(progData, [], progData); // re-render sin reload
-    // Actualizar resumen en background
+    renderProgCont(progData, [], progData);
     if(role==='supervisor') setTimeout(cargarProg,100);
   };
   openMo('mo-conf');
@@ -1358,7 +1331,7 @@ function openViaje(id) {
   viajeObjId=id;
   const o=state.objetivos.find(x=>x.id===id);
   const cort=o?kgCortado(o):0, falt=o?kgFalt(o):0;
-  document.getElementById('mv-title').textContent=`Viaje #${(o?.viajes||[]).length+1}`;
+  document.getElementById('mv-title').textContent=`Viaje #${(o?.viajes||[]).filter(v=>v.tipo!=='ops').length+1}`;
   document.getElementById('mv-sub').innerHTML=o?`<strong>${o.producto}</strong> · ${cort.toFixed(1)} kg cortados · ${falt>0?`Faltan <strong>${falt.toFixed(1)} kg</strong>`:'<span style="color:var(--grn)">Objetivo alcanzado</span>'}` : '';
   document.getElementById('v-kg').value='';
   document.getElementById('v-nota').value='';
@@ -1407,12 +1380,12 @@ function exportSemana(sk) {
 function doExport(objs,fn) {
   if(!objs.length){alert('Sin datos');return;}
   const wb=XLSX.utils.book_new();
-  const rows=[['CONTROL DE CORTE — MANUALIDADES'],[`Exportado: ${new Date().toLocaleString('es-AR')}`],[],['PRODUCTO','LOTE','OPERARIOS','OBJETIVO (kg)','CORTADO (kg)','DIFERENCIA (kg)','%','VIAJES','ESTADO','INICIO','FIN TEÓRICO','EQUIPO']];
-  objs.forEach(o=>{ const ft=calcFinTeo(o),c=kgCortado(o); rows.push([o.producto,o.lote||'',o.operarios,o.totalKg,c,(c-o.totalKg).toFixed(1),`${pct(o)}%`,(o.viajes||[]).length,o.status==='listo'?'Listo':o.status==='en-curso'?'En curso':'Pendiente',fmtT(o.horaInicio),ft?fmtT(ft):'-',(o.operariosNombres||[]).join(', ')]); });
+  const rows=[['MANUALIDADES APP'],[`Exportado: ${new Date().toLocaleString('es-AR')}`],[],['PRODUCTO','LOTE','OPERARIOS','OBJETIVO (kg)','CORTADO (kg)','DIFERENCIA (kg)','%','VIAJES','ESTADO','INICIO','FIN TEÓRICO','EQUIPO']];
+  objs.forEach(o=>{ const ft=calcFinTeo(o),c=kgCortado(o); rows.push([o.producto,o.lote||'',o.operarios,o.totalKg,c,(c-o.totalKg).toFixed(1),`${pct(o)}%`,(o.viajes||[]).filter(v=>v.tipo!=='ops').length,o.status==='listo'?'Listo':o.status==='en-curso'?'En curso':'Pendiente',fmtT(o.horaInicio),ft?fmtT(ft):'-',(o.operariosNombres||[]).join(', ')]); });
   const wsR=XLSX.utils.aoa_to_sheet(rows);
   wsR['!cols']=[{wch:28},{wch:12},{wch:10},{wch:12},{wch:12},{wch:12},{wch:6},{wch:8},{wch:12},{wch:10},{wch:12},{wch:30}];
   XLSX.utils.book_append_sheet(wb,wsR,'Resumen');
-  objs.forEach((o,i)=>{ const r=[[`${o.producto}${o.lote?' — '+o.lote:''}`],[`Operarios: ${o.operarios} | Obj: ${o.totalKg} kg | Rend: ${o.rendTotal} kg/h`],[(o.operariosNombres||[]).length?`Equipo: ${o.operariosNombres.join(', ')}`:''],[], ['#','KG','HORA','NOTA','ACUMULADO','RESTANTE']]; let ac=0; (o.viajes||[]).forEach((v,j)=>{ac+=v.kg;r.push([j+1,v.kg,fmtT(v.ts),v.nota||'',ac.toFixed(1),Math.max(0,o.totalKg-ac).toFixed(1)]);}); r.push([],['TOTAL CORTADO',kgCortado(o).toFixed(1)],['OBJETIVO',o.totalKg],['DIFERENCIA',(kgCortado(o)-o.totalKg).toFixed(1)],['%',`${pct(o)}%`]); const ws=XLSX.utils.aoa_to_sheet(r); ws['!cols']=[{wch:5},{wch:8},{wch:10},{wch:30},{wch:12},{wch:12}]; XLSX.utils.book_append_sheet(wb,ws,(o.producto.substring(0,16)+`_${i+1}`).replace(/[\/\\?*\[\]]/g,'')); });
+  objs.forEach((o,i)=>{ const r=[[`${o.producto}${o.lote?' — '+o.lote:''}`],[`Operarios: ${o.operarios} | Obj: ${o.totalKg} kg | Rend actual: ${o.rendActual||o.rendTotal} kg/h`],[(o.operariosNombres||[]).length?`Equipo: ${o.operariosNombres.join(', ')}`:''],[], ['#','KG','HORA','TIPO','ACUMULADO','RESTANTE']]; let ac=0; let vc=1; (o.viajes||[]).forEach((v,j)=>{ if(v.tipo==='ops'){ r.push(['-',`Ops: ${v.anterior}->${v.nuevo}`,fmtT(v.ts),v.motivo||'Cambio operarios',ac.toFixed(1),Math.max(0,o.totalKg-ac).toFixed(1)]); } else { ac+=v.kg; r.push([vc++,v.kg,fmtT(v.ts),v.nota||'Viaje',ac.toFixed(1),Math.max(0,o.totalKg-ac).toFixed(1)]); } }); r.push([],['TOTAL CORTADO',kgCortado(o).toFixed(1)],['OBJETIVO',o.totalKg],['DIFERENCIA',(kgCortado(o)-o.totalKg).toFixed(1)],['%',`${pct(o)}%`]); const ws=XLSX.utils.aoa_to_sheet(r); ws['!cols']=[{wch:5},{wch:12},{wch:10},{wch:30},{wch:12},{wch:12}]; XLSX.utils.book_append_sheet(wb,ws,(o.producto.substring(0,16)+`_${i+1}`).replace(/[\/\\?*\[\]]/g,'')); });
   XLSX.writeFile(wb,`${fn}.xlsx`);
 }
 
